@@ -1,5 +1,6 @@
 local map = vim.api.nvim_set_keymap
 
+
 map('n', ']hl', ':nohl<CR>', {})
 map('n', '<Leader>nc', ':set background=dark<CR>:CycleColorNext<CR>', {})
 

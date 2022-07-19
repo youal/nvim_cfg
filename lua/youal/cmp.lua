@@ -14,6 +14,7 @@ cmp.setup({
 		sources = cmp.config.sources(
 		{ { name = 'nvim_lsp' }, },
 
+		 {{ name = 'path' }},
 		-- For suggestions in insert mode.
 		{ { name = 'buffer' },})})
 

@@ -8,7 +8,7 @@ let g:tmuxcomplete#trigger = 'completefunc'
 
 " au Filetype vim let b:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'", "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
 
-"filetype plugin indent on
+" filetype plugin indent on
 
 " Highhlight the columns on the right in a different colour.
 "let &colorcolumn=join(range(81,999),",")

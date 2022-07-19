@@ -90,11 +90,9 @@ return require('packer').startup(function()
 	-- Not good with symbols in Lisp.
 	-- use 'jiangmiao/auto-pairs'
 	-- use 'Raimondi/delimitMate'
-
-
 	-- use {
 	-- "windwp/nvim-autopairs",
-    -- config = function() require("nvim-autopairs").setup {} end
+	-- config = function() require("nvim-autopairs").setup {} end
 	-- }
 
 	-- Better handling of symbols in Lisp.
@@ -102,14 +100,15 @@ return require('packer').startup(function()
 	-- pair.
 	-- use '/cohama/lexima.vim'
 
+	use 'kana/vim-smartinput'
+
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'hrsh7th/cmp-buffer'
-	-- use 'hrsh7th/cmp-path'
+	use 'hrsh7th/cmp-path'
 	use 'hrsh7th/cmp-cmdline'
 	use 'hrsh7th/nvim-cmp'
 
 	use 'mikelue/vim-maven-plugin'
-	use 'kana/vim-smartinput'
 
 	use 'godlygeek/tabular'
 	use 'mbbill/undotree'
@@ -119,6 +118,8 @@ return require('packer').startup(function()
 	use 'pechorin/any-jump.vim'
 	use	'tmhedberg/simpylfold'
 	use 'jlanzarotta/bufexplorer'
+
+	-- Generate some errors randomly.
 	-- use 'gennaro-tedesco/nvim-jqx'
 
 	use 'tpope/vim-unimpaired'
@@ -127,14 +128,13 @@ return require('packer').startup(function()
 	use 'dhruvasagar/vim-table-mode'
 
 	use 'ludovicchabant/vim-gutentags'
+	-- use 'szw/vim-tags'
 	use 'preservim/tagbar'
 
 	use 'tpope/vim-fugitive'
 	use 'tpope/vim-rhubarb'
 	use 'mhinz/vim-signify'
 	use 'junegunn/gv.vim'
-
-	use 'idanarye/vim-merginal'
 
 	use {
 		'ruifm/gitlinker.nvim',
