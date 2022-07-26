@@ -38,16 +38,18 @@ end
 -- }
 
 -- Licence not very Open.
--- require('lspconfig')['pyright'].setup{
---     on_attach = on_attach,
--- }
-
-require'lspconfig'.jedi_language_server.setup{
+require('lspconfig')['pyright'].setup{
     on_attach = on_attach,
 }
 
--- Requires jedi.
-require'lspconfig'.pylsp.setup{}
+-- require'lspconfig'.jedi_language_server.setup{
+--     on_attach = on_attach,
+-- }
+
+-- -- Requires jedi.
+-- require'lspconfig'.pylsp.setup{
+--     on_attach = on_attach,
+-- }
 
 require('lspconfig')['bashls'].setup{
     on_attach = on_attach,

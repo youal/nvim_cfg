@@ -1,6 +1,9 @@
 local map = vim.api.nvim_set_keymap
 
 
+map('n', '<Tab>', 'gt', {})
+map('n', '<S-Tab>', 'gT', {})
+
 map('n', ']hl', ':nohl<CR>', {})
 map('n', '<Leader>nc', ':set background=dark<CR>:CycleColorNext<CR>', {})
 
@@ -19,3 +22,5 @@ map('t', '<Esc>', '<C-\\><C-n>', {})
 
 map('n', '<F3>', 'a<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>', {})
 map('i', '<F3>', '<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>', {})
+
+map('i', '<C-x><C-o>', "<Cmd>lua require('cmp').complete()<CR>", {})

@@ -1,6 +1,7 @@
 vim.cmd([[
 " Use <C-x><C-u> to complete with words coming from Tmux.
 let g:tmuxcomplete#trigger = 'completefunc'
+let g:snipMate = { 'snippet_version' : 1 }
 
 " Do not start the server when opening a Mardown file.
 " Instead, use the commend ComposerStart.
@@ -21,6 +22,8 @@ local bo = vim.bo	-- buffer
 local wo = vim.wo	-- window
 local o = vim.o		-- general
 
+-- Usefull to search recursivelly for a file with "find" withing the cwd.
+bo.path = bo.path .. "./**"
 bo.complete = bo.complete .. ",kspell"
 bo.textwidth = 78
 
@@ -63,3 +66,4 @@ require('pqf').setup()
 require"gitlinker".setup()
 -- require("youal.autopairs")
 require("youal.cmp")
+require('tabline').setup({})

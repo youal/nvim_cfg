@@ -108,16 +108,13 @@ return require('packer').startup(function()
 	use 'hrsh7th/cmp-cmdline'
 	use 'hrsh7th/nvim-cmp'
 
-	use 'mikelue/vim-maven-plugin'
-
 	use 'godlygeek/tabular'
 	use 'mbbill/undotree'
 	use 'dense-analysis/ale'
 	use 'tpope/vim-eunuch'
 	use 'ntpeters/vim-better-whitespace'
 	use 'pechorin/any-jump.vim'
-	use	'tmhedberg/simpylfold'
-	use 'jlanzarotta/bufexplorer'
+	use 'tmhedberg/simpylfold'
 
 	-- Generate some errors randomly.
 	-- use 'gennaro-tedesco/nvim-jqx'
@@ -135,7 +132,6 @@ return require('packer').startup(function()
 	use 'tpope/vim-rhubarb'
 	use 'mhinz/vim-signify'
 	use 'junegunn/gv.vim'
-
 	use {
 		'ruifm/gitlinker.nvim',
 		requires = 'nvim-lua/plenary.nvim',
@@ -146,6 +142,32 @@ return require('packer').startup(function()
 
 	-- use 'euclio/vim-markdown-composer'
 	use {"ellisonleao/glow.nvim"}
+
+	use({
+		'crispgm/nvim-tabline',
+		config = function()
+			require('tabline').setup({})
+		end,
+	})
+
+	-- Prose
+	use "Pocco81/TrueZen.nvim"
+	use "junegunn/limelight.vim"
+	use "rhysd/vim-grammarous"
+
+	use 'MarcWeber/vim-addon-mw-utils'
+	use 'tomtom/tlib_vim'
+	use 'garbas/vim-snipmate'
+	use 'honza/vim-snippets'
+
+	use 'mhinz/vim-grepper'
+
+	-- use 'tpope/vim-fireplace'
+
+	-- use {
+	-- 	'kosayoda/nvim-lightbulb',
+	-- 	requires = 'antoinemadec/FixCursorHold.nvim',
+	-- }
 
 	-- Colorscheme
 	-- use 'vim-scripts/CycleColor'
