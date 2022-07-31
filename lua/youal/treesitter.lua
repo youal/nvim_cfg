@@ -1,4 +1,40 @@
 require'nvim-treesitter.configs'.setup {
+	incremental_selection = {
+		enable = true,
+		keymaps = {
+			-- in normal mode, start incremental selection.
+			init_selection = "gnn",
+
+			-- in visual mode, increment to the upper named parent.
+			node_incremental = "grn",
+
+			-- in visual mode, increment to the upper scope.
+			scope_incremental = "grc",
+
+			-- in visual mode, decrement to the previous named node.
+			node_decremental = "grm",
+		},
+	},
+
+	-- Automatically install missing parsers when entering buffer
+	auto_install = false,
+
+	-- I do not see the difference.
+	-- highlight = {
+	-- enable = true,
+	-- -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+	-- -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+	-- -- Using this option may slow down your editor, and you may see some duplicate highlights.
+	-- -- Instead of true it can also be a list of languages
+	-- additional_vim_regex_highlighting = false,
+	-- },
+
+	-- Does not work well with if/elif/else in Python as of July 2022.
+	-- Still expereimental.
+	-- indent = {
+	-- 	enable = true
+	-- },
+
 	-- Used by nvim-treesitter/nvim-treesitter-textobjects.
 	textobjects = {
 		select = {
@@ -54,17 +90,6 @@ require'nvim-treesitter.configs'.setup {
 		},
 	},
 
-	-- Used by RRethy/nvim-treesitter-textsubjects.
-	textsubjects = {
-		enable = true,
-		prev_selection = ',', -- (Optional) keymap to select the previous selection
-		keymaps = {
-			['.'] = 'textsubjects-smart',
-			[';'] = 'textsubjects-container-outer',
-			['i;'] = 'textsubjects-container-inner',
-		},
-	},
-
 	-- Used by nvim-neorg/neorg.
 	ensure_installed = { "norg", --[[ other parsers you would wish to have ]] },
 	highlight = { -- Be sure to enable highlights if you haven't!
@@ -85,4 +110,14 @@ require'nvim-treesitter.configs'.setup {
 	context_commentstring = {
 		enable = true
 	},
+
+	-- Used by andymass/vim-matchup.
+	matchup = {
+		enable = true,              -- mandatory, false will disable the whole extension
+	},
 }
+
+vim.cmd([[
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+]])

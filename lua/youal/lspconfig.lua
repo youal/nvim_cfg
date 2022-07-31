@@ -37,6 +37,14 @@ end
 --   debounce_text_changes = 150,
 -- }
 
+require'lspconfig'.yamlls.setup{
+    on_attach = on_attach,
+}
+
+require'lspconfig'.jsonls.setup{
+    on_attach = on_attach,
+}
+
 -- Licence not very Open.
 require('lspconfig')['pyright'].setup{
     on_attach = on_attach,
@@ -46,12 +54,11 @@ require('lspconfig')['pyright'].setup{
 --     on_attach = on_attach,
 -- }
 
--- -- Requires jedi.
+-- Requires jedi.
 -- require'lspconfig'.pylsp.setup{
 --     on_attach = on_attach,
 -- }
 
-require('lspconfig')['bashls'].setup{
-    on_attach = on_attach,
-    -- flags = lsp_flags,
-}
+-- require'lspconfig'.pyre.setup{
+--     on_attach = on_attach,
+-- }

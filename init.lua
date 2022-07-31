@@ -23,7 +23,8 @@ local wo = vim.wo	-- window
 local o = vim.o		-- general
 
 -- Usefull to search recursivelly for a file with "find" withing the cwd.
-bo.path = bo.path .. "./**"
+-- bo.path = bo.path .. ",./**"
+vim.opt.path:append '**'
 bo.complete = bo.complete .. ",kspell"
 bo.textwidth = 78
 
@@ -53,6 +54,7 @@ o.shiftround = true
 require('impatient')
 
 require("youal.packer")
+require("youal.ale")
 require("youal.comment_header")
 require("youal.map")
 require("youal.treesitter")
@@ -61,9 +63,14 @@ require("youal.lspconfig")
 require("youal.symbols")
 require("youal.neorg")
 require'hop'.setup()
-require("youal.readline")
+-- require("youal.readline")
 require('pqf').setup()
 require"gitlinker".setup()
 -- require("youal.autopairs")
 require("youal.cmp")
 require('tabline').setup({})
+require'colorizer'.setup()
+require('nvim-ts-autotag').setup()
+require("youal.color-picker")
+require("youal.true_zen")
+require("youal.tagbar")

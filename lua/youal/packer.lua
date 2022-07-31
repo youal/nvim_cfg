@@ -7,9 +7,9 @@ return require('packer').startup(function()
 	-- Post-install/update hook with neovim command
 	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 	use 'nvim-treesitter/nvim-treesitter-textobjects'
-	use 'RRethy/nvim-treesitter-textsubjects'
 	use 'p00f/nvim-ts-rainbow'
 	use 'nvim-treesitter/nvim-treesitter-context'
+	use 'windwp/nvim-ts-autotag'
 	use 'JoosepAlviste/nvim-ts-context-commentstring'
 	use 'tpope/vim-commentary'
 
@@ -19,12 +19,34 @@ return require('packer').startup(function()
 		requires = { 'nvim-treesitter/nvim-treesitter' }
 	}
 
+	-- Uses treesitter to not check spelling in code.
+	-- highlight should not be set in treesitter. But this option is
+	-- required by Neog, breaking this plugin.
+	-- use {
+	-- 	'lewis6991/spellsitter.nvim',
+	-- 	config = function()
+	-- 	require('spellsitter').setup()
+	-- 	end
+	-- }
+
 	use {"neovim/nvim-lspconfig",}
+	use 'dense-analysis/ale'
 
-	-- Shows symbols.
+	use 'hrsh7th/cmp-nvim-lsp'
+	use 'hrsh7th/cmp-buffer'
+	use 'hrsh7th/cmp-path'
+	use 'hrsh7th/cmp-cmdline'
+	use 'hrsh7th/nvim-cmp'
+
+	-- Prose
+	use "Pocco81/TrueZen.nvim"
+	use "junegunn/limelight.vim"
+
 	use 'simrat39/symbols-outline.nvim'
+	use 'ludovicchabant/vim-gutentags'
+	-- use 'szw/vim-tags'
+	use 'preservim/tagbar'
 
-	-- Restore sessions.
 	use {
 		'rmagatti/auto-session',
 		config = function()
@@ -36,18 +58,8 @@ return require('packer').startup(function()
 	}
 
 	-- Enable readline shortcuts in insert/command mode.
-	use 'linty-org/readline.nvim'
-
-	-- Creates missing directories when writting a file.
-	use {'jghauser/mkdir.nvim'}
-
-	-- Uses treesitter to not check spelling in code.
-	use {
-		'lewis6991/spellsitter.nvim',
-		config = function()
-			require('spellsitter').setup()
-		end
-	}
+	use 'tpope/vim-rsi'
+	-- use 'linty-org/readline.nvim'
 
 	-- Illuminate occurrences of the current workd.
 	use 'RRethy/vim-illuminate'
@@ -56,22 +68,72 @@ return require('packer').startup(function()
 	use "lukas-reineke/indent-blankline.nvim"
 	-- use "glepnir/indent-guides.nvim"
 
-	-- Use Ranger.
-	use 'kevinhwang91/rnvimr'
+
+	use 'ThePrimeagen/harpoon'
 
 	use {
 		'phaazon/hop.nvim',
 		branch = 'v2', -- optional but strongly recommended
 	}
 
-	-- Runs code.
+	use {
+		"NTBBloodbath/rest.nvim",
+		requires = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("rest-nvim").setup({
+				-- Open request results in a horizontal split
+				result_split_horizontal = false,
+				-- Keep the http file buffer above|left when split horizontal|vertical
+				result_split_in_place = false,
+				-- Skip SSL verification, useful for unknown certificates
+				skip_ssl_verification = false,
+				-- Highlight request on run
+				highlight = {
+					enabled = true,
+					timeout = 150,
+				},
+				result = {
+					-- toggle showing URL, HTTP info, headers at top the of result window
+					show_url = true,
+					show_http_info = true,
+					show_headers = true,
+				},
+				-- Jump to request line on run
+				jump_to_request = false,
+				env_file = '.env',
+			custom_dynamic_variables = {},
+				yank_dry_run = true,
+			})
+		end
+	}
+
+	-- Code runner.
 	use { 'michaelb/sniprun', run = 'bash ./install.sh'}
+	-- use 'metakirby5/codi.vim'
+	-- use 'jalvesaq/vimcmdline'
 
 	-- Shows a floating window with the context of the error shown in the
 	-- quickfix list.
+	-- Integrates with FZF.
 	use {'kevinhwang91/nvim-bqf'}
+
 	-- Prettier.
 	use 'https://gitlab.com/yorickpeterse/nvim-pqf'
+
+	use({
+		'crispgm/nvim-tabline',
+		config = function()
+			require('tabline').setup({})
+		end,
+	})
+
+	-- Useful to choose colours in CSS.
+	use 'norcalli/nvim-colorizer.lua'
+	use ({"ziontee113/color-picker.nvim",
+		config = function()
+			require("color-picker")
+		end,
+	})
 
 	use {
 		"nvim-neorg/neorg",
@@ -81,11 +143,11 @@ return require('packer').startup(function()
 		end,
 		requires = "nvim-lua/plenary.nvim"
 	}
-	use "max397574/neorg-kanban"
 
 	use 'tpope/vim-surround'
 	use 'tpope/vim-repeat'
 	use 'tpope/vim-abolish'
+	use 'tpope/vim-eunuch'
 
 	-- Not good with symbols in Lisp.
 	-- use 'jiangmiao/auto-pairs'
@@ -96,37 +158,20 @@ return require('packer').startup(function()
 	-- }
 
 	-- Better handling of symbols in Lisp.
-	-- But <C-h> in insert mode is not treated as <BS>, thus, removes not the
-	-- pair.
+	-- But <C-h> in insert mode is not treated as <BS>, thus, does not
+	-- remove the pair.
 	-- use '/cohama/lexima.vim'
-
 	use 'kana/vim-smartinput'
-
-	use 'hrsh7th/cmp-nvim-lsp'
-	use 'hrsh7th/cmp-buffer'
-	use 'hrsh7th/cmp-path'
-	use 'hrsh7th/cmp-cmdline'
-	use 'hrsh7th/nvim-cmp'
 
 	use 'godlygeek/tabular'
 	use 'mbbill/undotree'
-	use 'dense-analysis/ale'
-	use 'tpope/vim-eunuch'
 	use 'ntpeters/vim-better-whitespace'
-	use 'pechorin/any-jump.vim'
-	use 'tmhedberg/simpylfold'
-
-	-- Generate some errors randomly.
-	-- use 'gennaro-tedesco/nvim-jqx'
-
-	use 'tpope/vim-unimpaired'
-	use 'wellle/targets.vim'
+	use 'mhinz/vim-grepper'
+	use 'tmhedberg/SimpylFold'
 	use 'andymass/vim-matchup'
 	use 'dhruvasagar/vim-table-mode'
-
-	use 'ludovicchabant/vim-gutentags'
-	-- use 'szw/vim-tags'
-	use 'preservim/tagbar'
+	use 'wellle/targets.vim'
+	use 'junegunn/fzf.vim'
 
 	use 'tpope/vim-fugitive'
 	use 'tpope/vim-rhubarb'
@@ -143,34 +188,28 @@ return require('packer').startup(function()
 	-- use 'euclio/vim-markdown-composer'
 	use {"ellisonleao/glow.nvim"}
 
-	use({
-		'crispgm/nvim-tabline',
-		config = function()
-			require('tabline').setup({})
-		end,
-	})
-
-	-- Prose
-	use "Pocco81/TrueZen.nvim"
-	use "junegunn/limelight.vim"
-	use "rhysd/vim-grammarous"
-
 	use 'MarcWeber/vim-addon-mw-utils'
 	use 'tomtom/tlib_vim'
 	use 'garbas/vim-snipmate'
 	use 'honza/vim-snippets'
 
-	use 'mhinz/vim-grepper'
+	-- Colorscheme
+	-- use 'vim-scripts/CycleColor'
+	use 'vimoxide/vim-cinnabar'
+	use 'vigoux/oak'
 
+	-- Use Ranger.
+	use 'kevinhwang91/rnvimr'
+
+	-- Clojure
 	-- use 'tpope/vim-fireplace'
 
+	-- Code actions
 	-- use {
 	-- 	'kosayoda/nvim-lightbulb',
 	-- 	requires = 'antoinemadec/FixCursorHold.nvim',
 	-- }
 
-	-- Colorscheme
-	-- use 'vim-scripts/CycleColor'
-	use 'vimoxide/vim-cinnabar'
-	use 'vigoux/oak'
+	-- Generate some errors randomly.
+	-- use 'gennaro-tedesco/nvim-jqx'
 end)
