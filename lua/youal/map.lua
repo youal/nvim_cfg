@@ -1,12 +1,15 @@
 local map = vim.api.nvim_set_keymap
 
 
-map('n', '<Tab>', ':tabprevious<CR>', {})
-map('n', '<S-Tab>', ':tabnext<CR>', {})
+map('n', '<S-Tab>', ':tabprevious<CR>', {})
+map('n', '<Tab>', ':tabnext<CR>', {})
 
 -- To escape the insert/terminal mode more easily.
 map('t', '<Esc>', '<C-\\><C-n>', {})
 map('n', ']oh', ':nohl<CR>', {})
+
+map('n', '[os', ':set spell<CR>', {})
+map('n', ']os', ':set nospell<CR>', {})
 
 map('n', '[ol', ':set nolist<CR>', {})
 map('n', ']ol', ':set list<CR>', {})

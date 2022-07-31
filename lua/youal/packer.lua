@@ -201,6 +201,10 @@ return require('packer').startup(function()
 	-- Use Ranger.
 	use 'kevinhwang91/rnvimr'
 
+	-- Might be useful if need to avoid multiple instances of nvim embedded
+	-- in each other.
+	-- use 'mhinz/neovim-remote'
+
 	-- Clojure
 	-- use 'tpope/vim-fireplace'
 
