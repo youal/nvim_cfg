@@ -68,7 +68,7 @@ return require('packer').startup(function()
 	use "lukas-reineke/indent-blankline.nvim"
 	-- use "glepnir/indent-guides.nvim"
 
-
+	use 'kazhala/close-buffers.nvim'
 	use 'ThePrimeagen/harpoon'
 
 	use {

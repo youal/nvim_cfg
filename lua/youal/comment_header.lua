@@ -4,7 +4,7 @@ local create_autocmd = vim.api.nvim_create_autocmd
 local coment_header = vim.api.nvim_create_augroup('coment_header', {clear = true})
 
 create_autocmd('FileType', {
-	pattern = 'perl,yaml',
+	pattern = 'perl,yaml,tmux',
 	group = coment_header,
 	callback = function()
 		map('n', '<Leader>b',

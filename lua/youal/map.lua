@@ -11,8 +11,8 @@ map('n', ']oh', ':nohl<CR>', {})
 map('n', '[os', ':set spell<CR>', {})
 map('n', ']os', ':set nospell<CR>', {})
 
-map('n', '[ol', ':set nolist<CR>', {})
-map('n', ']ol', ':set list<CR>', {})
+map('n', '[ol', ':set list<CR>', {})
+map('n', ']ol', ':set nolist<CR>', {})
 
 map('n', '[q', ':cprevious<CR>', {})
 map('n', ']q', ':cnext<CR>', {})
