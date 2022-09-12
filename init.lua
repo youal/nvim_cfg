@@ -25,6 +25,7 @@ local o = vim.o		-- general
 -- Usefull to search recursivelly for a file with "find" withing the cwd.
 -- bo.path = bo.path .. ",./**"
 vim.opt.path:append '**'
+vim.opt.formatoptions:append 'o'
 bo.complete = bo.complete .. ",kspell"
 bo.textwidth = 78
 

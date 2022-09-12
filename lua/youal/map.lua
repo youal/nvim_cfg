@@ -33,7 +33,6 @@ map('i', '<F3>', '<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>', {})
 -- map('n', '<Leader>nc', ':set background=dark<CR>:CycleColorNext<CR>', {})
 
 map('n', '<Leader>hp', ':HopPattern<CR>', {})
-map('n', '<Leader>gs', ':Git<CR>', {})
 
 map('n', '<Leader>sr', ':SignifyRefresh<CR>', {})
 map('n', '<Leader>sd', ':SignifyHunkDiff<CR>', {})

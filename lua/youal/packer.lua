@@ -164,12 +164,13 @@ return require('packer').startup(function()
 	use 'kana/vim-smartinput'
 
 	use 'godlygeek/tabular'
+	-- use 'dhruvasagar/vim-table-mode'
+
 	use 'mbbill/undotree'
 	use 'ntpeters/vim-better-whitespace'
 	use 'mhinz/vim-grepper'
 	use 'tmhedberg/SimpylFold'
 	use 'andymass/vim-matchup'
-	use 'dhruvasagar/vim-table-mode'
 	use 'wellle/targets.vim'
 	use 'junegunn/fzf.vim'
 
@@ -188,10 +189,7 @@ return require('packer').startup(function()
 	-- use 'euclio/vim-markdown-composer'
 	use {"ellisonleao/glow.nvim"}
 
-	use 'MarcWeber/vim-addon-mw-utils'
-	use 'tomtom/tlib_vim'
-	use 'garbas/vim-snipmate'
-	use 'honza/vim-snippets'
+	use {"jez/vim-superman"}
 
 	-- Colorscheme
 	-- use 'vim-scripts/CycleColor'
