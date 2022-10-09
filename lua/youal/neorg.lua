@@ -11,6 +11,5 @@ require('neorg').setup {
 			}
 		},
 		["core.norg.concealer"] = {},
-		["core.norg.qol.toc"] = {},
 	}
 }
