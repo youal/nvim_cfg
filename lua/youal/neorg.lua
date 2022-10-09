@@ -11,5 +11,7 @@ require('neorg').setup {
 			}
 		},
 		["core.norg.concealer"] = {},
+		["core.export"] = {},
+		["core.export.markdown"] = {},
 	}
 }
