@@ -9,4 +9,15 @@ create_autocmd('FileType', {
 	command = 'set tabstop=4 | set shiftwidth=4'
 })
 
+local shebang = vim.api.nvim_create_augroup('shebang', {clear = true})
+create_autocmd('FileType', {
+	pattern = 'sh',
+	group = shebang,
+	callback = function()
+		map('n', '<Leader>sb',
+		'i#! /usr/bin/env bash<C-m><C-m><C-m>',
+		{})
+	end
+})
+
 	-- command = 'set tabstop=4; set shiftwidth=4'

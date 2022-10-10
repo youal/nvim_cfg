@@ -17,9 +17,6 @@ map('n', ']ol', ':set nolist<CR>', {})
 map('n', '[q', ':cprevious<CR>', {})
 map('n', ']q', ':cnext<CR>', {})
 
-map('n', '[<Space>', 'O<Esc>j', {})
-map('n', ']<Space>', 'o<Esc>k', {})
-
 map('n', '<Leader>dt', ':diffthis<CR>', {})
 map('n', '<Leader>dg', ':diffget<CR>', {})
 map('n', '<Leader>dp', ':diffput<CR>', {})
