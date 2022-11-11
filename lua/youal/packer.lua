@@ -169,10 +169,13 @@ return require('packer').startup(function()
 
 	use 'mbbill/undotree'
 	use 'ntpeters/vim-better-whitespace'
+	-- use 'bronson/vim-trailing-whitespace'
 	use 'mhinz/vim-grepper'
 	use 'tmhedberg/SimpylFold'
 	use 'andymass/vim-matchup'
 	use 'wellle/targets.vim'
+
+	use 'junegunn/fzf'
 	use 'junegunn/fzf.vim'
 
 	use 'tpope/vim-fugitive'
