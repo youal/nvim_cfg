@@ -37,10 +37,6 @@ end
 --   debounce_text_changes = 150,
 -- }
 
-require'lspconfig'.yamlls.setup{
-    on_attach = on_attach,
-}
-
 require'lspconfig'.jsonls.setup{
     on_attach = on_attach,
 }
