@@ -3,6 +3,7 @@ vim.cmd([[
 let g:tmuxcomplete#trigger = 'completefunc'
 let g:snipMate = { 'snippet_version' : 1 }
 
+au BufRead,BufNewFile *.libsonnet set filetype=jsonnet
 " Do not start the server when opening a Mardown file.
 " Instead, use the commend ComposerStart.
 " let g:markdown_composer_autostart = 0
