@@ -35,9 +35,6 @@ map('n', '<Leader>sr', ':SignifyRefresh<CR>', {})
 map('n', '<Leader>sd', ':SignifyHunkDiff<CR>', {})
 map('n', '<Leader>su', ':SignifyHunkUndo<CR>', {})
 
-map('n', '<Leader>ss', '<Plug>SnipRun', {})
-map('n', '<Leader>so', '<Plug>SnipRunOperator', {})
-
 map('n', '<Leader>rr', '<Plug>RestNvim', {})
 map('n', '<Leader>rp', '<Plug>RestNvimPreview', {})
 

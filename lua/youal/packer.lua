@@ -108,7 +108,6 @@ return require('packer').startup(function()
 	}
 
 	-- Code runner.
-	use { 'michaelb/sniprun', run = 'bash ./install.sh'}
 	-- use 'metakirby5/codi.vim'
 	-- use 'jalvesaq/vimcmdline'
 
