@@ -107,10 +107,6 @@ return require('packer').startup(function()
 		end
 	}
 
-	-- Code runner.
-	-- use 'metakirby5/codi.vim'
-	-- use 'jalvesaq/vimcmdline'
-
 	-- Shows a floating window with the context of the error shown in the
 	-- quickfix list.
 	-- Integrates with FZF.
