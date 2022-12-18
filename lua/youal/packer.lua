@@ -69,7 +69,7 @@ return require('packer').startup(function()
 	-- use "glepnir/indent-guides.nvim"
 
 	use 'kazhala/close-buffers.nvim'
-	use 'ThePrimeagen/harpoon'
+	-- use 'ThePrimeagen/harpoon'
 
 	use {
 		'phaazon/hop.nvim',
