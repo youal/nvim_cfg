@@ -187,8 +187,6 @@ return require('packer').startup(function()
 	-- use 'euclio/vim-markdown-composer'
 	use {"ellisonleao/glow.nvim"}
 
-	use {"jez/vim-superman"}
-
 	-- Colorscheme
 	-- use 'vim-scripts/CycleColor'
 	use 'vimoxide/vim-cinnabar'
