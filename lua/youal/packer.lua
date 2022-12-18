@@ -39,7 +39,6 @@ return require('packer').startup(function()
 	use 'hrsh7th/nvim-cmp'
 
 	-- Prose
-	use "Pocco81/TrueZen.nvim"
 	use "junegunn/limelight.vim"
 
 	use 'simrat39/symbols-outline.nvim'
