@@ -9,7 +9,6 @@ return require('packer').startup(function()
 	use 'nvim-treesitter/nvim-treesitter-textobjects'
 	use 'p00f/nvim-ts-rainbow'
 	use 'nvim-treesitter/nvim-treesitter-context'
-	use 'windwp/nvim-ts-autotag'
 	use 'JoosepAlviste/nvim-ts-context-commentstring'
 	use 'tpope/vim-commentary'
 
