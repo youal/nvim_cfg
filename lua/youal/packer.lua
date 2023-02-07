@@ -128,15 +128,16 @@ return require('packer').startup(function()
 		end,
 	})
 
-	use {
-		"nvim-neorg/neorg",
-		run = ":Neorg sync-parsers",
-		config = function()
-			require('neorg').setup {
-			}
-		end,
-		requires = "nvim-lua/plenary.nvim"
-	}
+
+	-- use {
+	-- 	"nvim-neorg/neorg",
+	-- 	run = ":Neorg sync-parsers",
+	-- 	config = function()
+	-- 		require('neorg').setup {
+	-- 		}
+	-- 	end,
+	-- 	requires = "nvim-lua/plenary.nvim"
+	-- }
 
 	use 'tpope/vim-surround'
 	use 'tpope/vim-repeat'
