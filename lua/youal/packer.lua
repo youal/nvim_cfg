@@ -172,6 +172,7 @@ return require('packer').startup(function()
 	use 'junegunn/fzf'
 	use 'junegunn/fzf.vim'
 
+	use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
 	use 'tpope/vim-fugitive'
 	use 'tpope/vim-rhubarb'
 	use 'mhinz/vim-signify'
