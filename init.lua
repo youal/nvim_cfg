@@ -5,6 +5,7 @@ let g:snipMate = { 'snippet_version' : 1 }
 
 au BufRead,BufNewFile *.libsonnet set filetype=jsonnet
 au FileType jsonnet set tabstop=2 | set shiftwidth=2
+au FileType lisp set tabstop=2 | set shiftwidth=2
 " Do not start the server when opening a Mardown file.
 " Instead, use the commend ComposerStart.
 " let g:markdown_composer_autostart = 0
@@ -74,6 +75,7 @@ require"gitlinker".setup()
 require("youal.cmp")
 require('tabline').setup({})
 require'colorizer'.setup()
+-- require('nvim-ts-autotag').setup()
 require("youal.color-picker")
 require("youal.tagbar")
 require("youal.tmux")

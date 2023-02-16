@@ -40,6 +40,8 @@ return require('packer').startup(function()
 	-- Prose
 	use "junegunn/limelight.vim"
 
+	use 'Olical/conjure'
+
 	use 'simrat39/symbols-outline.nvim'
 	use 'ludovicchabant/vim-gutentags'
 	-- use 'szw/vim-tags'

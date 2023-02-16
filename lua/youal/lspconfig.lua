@@ -58,3 +58,6 @@ require('lspconfig')['pyright'].setup{
 -- require'lspconfig'.pyre.setup{
 --     on_attach = on_attach,
 -- }
+require'lspconfig'.gopls.setup{
+    on_attach = on_attach,
+}
