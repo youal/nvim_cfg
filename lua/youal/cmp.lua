@@ -37,16 +37,18 @@ cmp.setup({
 -- }
 
 
+-- Having it in 'ex' mode is annoying. It does not go well with the default
+-- behaviour of Vim when using C-d.
 -- Use lsp to get suggestions when searching with /.
 -- Ex: Suggest names of functions, classes, ...
-cmp.setup.cmdline(
-	'/', {
-		mapping = cmp.mapping.preset.cmdline(),
-		sources = cmp.config.sources(
-		{{ name = 'nvim_lsp_document_symbol' }},
-		{{ name = 'buffer' }})})
-
-cmp.setup.cmdline(
-	':', {
-		mapping = cmp.mapping.preset.cmdline(),
-		sources = {{ name = 'cmdline' }}})
+-- cmp.setup.cmdline(
+-- 	'/', {
+-- 		mapping = cmp.mapping.preset.cmdline(),
+-- 		sources = cmp.config.sources(
+-- 		{{ name = 'nvim_lsp_document_symbol' }},
+-- 		{{ name = 'buffer' }})})
+--
+-- cmp.setup.cmdline(
+-- 	':', {
+-- 		mapping = cmp.mapping.preset.cmdline(),
+-- 		sources = {{ name = 'cmdline' }}})
