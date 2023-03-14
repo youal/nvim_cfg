@@ -20,9 +20,10 @@ vim.g.ale_disable_lsp = 1
 vim.g.ale_linters_explicit = 1
 
 vim.g.ale_linters = {
-   sh = {'shellcheck'},
-   python = {'bandit'},
-   lua = {'luac'},
+   c = {'flawfinder'},
+   -- sh = {'shellcheck'},
+   -- python = {'bandit'},
+   -- lua = {'luac'},
 }
 
 vim.g.ale_fixers = {

@@ -3,6 +3,7 @@ return require('packer').startup(function()
 
 	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
+	-- https://github.com/LazyVim/LazyVim
 
 	-- Post-install/update hook with neovim command
 	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
@@ -11,6 +12,8 @@ return require('packer').startup(function()
 	use 'nvim-treesitter/nvim-treesitter-context'
 	use 'JoosepAlviste/nvim-ts-context-commentstring'
 	use 'tpope/vim-commentary'
+	-- https://github.com/numToStr/Comment.nvim
+	-- https://github.com/folke/todo-comments.nvim
 
 	-- Better detection of arguments of functions using treesitter.
 	use {
@@ -28,8 +31,14 @@ return require('packer').startup(function()
 	-- 	end
 	-- }
 
+
+	-- use {"williamboman/mason-lspconfig.nvim",}
 	use {"neovim/nvim-lspconfig",}
 	use 'dense-analysis/ale'
+	-- https://github.com/folke/trouble.nvim
+	-- https://github.com/jose-elias-alvarez/null-ls.nvim
+	-- https://github.com/glepnir/lspsaga.nvim
+	-- https://github.com/ray-x/lsp_signature.nvim
 
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'hrsh7th/cmp-buffer'
@@ -69,8 +78,10 @@ return require('packer').startup(function()
 	-- use "glepnir/indent-guides.nvim"
 
 	use 'kazhala/close-buffers.nvim'
+	-- https://github.com/moll/vim-bbye
 	-- use 'ThePrimeagen/harpoon'
 
+	-- https://github.com/folke/which-key.nvim
 	use {
 		'phaazon/hop.nvim',
 		branch = 'v2', -- optional but strongly recommended
@@ -115,6 +126,7 @@ return require('packer').startup(function()
 	-- Prettier.
 	use 'https://gitlab.com/yorickpeterse/nvim-pqf'
 
+	-- https://github.com/akinsho/bufferline.nvim
 	use({
 		'crispgm/nvim-tabline',
 		config = function()
@@ -141,6 +153,7 @@ return require('packer').startup(function()
 	-- 	requires = "nvim-lua/plenary.nvim"
 	-- }
 
+	-- https://github.com/kylechui/nvim-surround
 	use 'tpope/vim-surround'
 	use 'tpope/vim-repeat'
 	use 'tpope/vim-abolish'
@@ -171,6 +184,8 @@ return require('packer').startup(function()
 	use 'andymass/vim-matchup'
 	use 'wellle/targets.vim'
 
+	-- https://github.com/wincent/command-t
+	-- https://github.com/ibhagwan/fzf-lua
 	use 'junegunn/fzf'
 	use 'junegunn/fzf.vim'
 

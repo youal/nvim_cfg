@@ -1,36 +1,37 @@
 require'nvim-treesitter.configs'.setup {
+	-- Automatically install missing parsers when entering buffer
+	auto_install = true,
+
+	-- Treesiter gives a better highlighting
+	highlight = {
+		enable = true,
+		-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+		-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+		-- Using this option may slow down your editor, and you may see some duplicate highlights.
+		-- Instead of true it can also be a list of languages
+		additional_vim_regex_highlighting = false,
+	},
+
 	incremental_selection = {
 		enable = true,
+		-- Override the default "g*" commands since I do not use them.
 		keymaps = {
 			-- in normal mode, start incremental selection.
-			init_selection = "gnn",
+			init_selection = "gn",
 
 			-- in visual mode, increment to the upper named parent.
-			node_incremental = "grn",
+			node_incremental = "gp",
 
 			-- in visual mode, increment to the upper scope.
-			scope_incremental = "grc",
+			scope_incremental = "gs",
 
 			-- in visual mode, decrement to the previous named node.
-			node_decremental = "grm",
+			node_decremental = "gm",
 		},
 	},
 
-	-- Automatically install missing parsers when entering buffer
-	auto_install = false,
-
-	-- I do not see the difference.
-	-- highlight = {
-	-- enable = true,
-	-- -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-	-- -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-	-- -- Using this option may slow down your editor, and you may see some duplicate highlights.
-	-- -- Instead of true it can also be a list of languages
-	-- additional_vim_regex_highlighting = false,
-	-- },
-
-	-- Does not work well with if/elif/else in Python as of July 2022.
 	-- Still expereimental.
+	-- Does not work well with if/elif/else in Python as of July 2022.
 	-- indent = {
 	-- 	enable = true
 	-- },
@@ -66,6 +67,8 @@ require'nvim-treesitter.configs'.setup {
 			goto_next_start = {
 				["]m"] = "@function.outer",
 				["]]"] = "@class.outer",
+				["]s"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
+				["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
 			},
 			goto_next_end = {
 				["]M"] = "@function.outer",
@@ -91,33 +94,28 @@ require'nvim-treesitter.configs'.setup {
 	},
 
 	-- Used by nvim-neorg/neorg.
-	ensure_installed = { "norg", --[[ other parsers you would wish to have ]] },
-	highlight = { -- Be sure to enable highlights if you haven't!
-		enable = true,
-	},
+	-- ensure_installed = { "norg", --[[ other parsers you would wish to have ]] },
+	-- highlight = { -- Be sure to enable highlights if you haven't!
+	-- 	enable = true,
+	-- },
 
 	-- Used by p00f/nvim-ts-rainbow.
-	rainbow = {
-		enable = true,
-		-- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-		extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-		max_file_lines = nil, -- Do not enable for files with more than n lines, int
-		-- colors = {}, -- table of hex strings
-		-- termcolors = {} -- table of colour name strings
-	},
+	-- rainbow = {
+	-- 	enable = true,
+	-- 	-- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
+	-- 	extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+	-- 	max_file_lines = nil, -- Do not enable for files with more than n lines, int
+	-- 	-- colors = {}, -- table of hex strings
+	-- 	-- termcolors = {} -- table of colour name strings
+	-- },
 
 	-- Used by JoosepAlviste/nvim-ts-context-commentstring
-	context_commentstring = {
-		enable = true
-	},
+	-- context_commentstring = {
+	-- 	enable = true
+	-- },
 
 	-- Used by andymass/vim-matchup.
 	matchup = {
 		enable = true,              -- mandatory, false will disable the whole extension
 	},
 }
-
-vim.cmd([[
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
-]])

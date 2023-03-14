@@ -32,32 +32,98 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 end
 
--- local lsp_flags = {
---   -- This is the default in Nvim 0.7+
---   debounce_text_changes = 150,
+-- require'lspconfig'.jsonls.setup{
+--     on_attach = on_attach,
 -- }
 
-require'lspconfig'.jsonls.setup{
-    on_attach = on_attach,
-}
-
--- Licence not very Open.
-require('lspconfig')['pyright'].setup{
-    on_attach = on_attach,
-}
+-- Extremely heavy (node js).
+-- require('lspconfig')['pyright'].setup{
+--     on_attach = on_attach,
+-- }
 
 -- require'lspconfig'.jedi_language_server.setup{
 --     on_attach = on_attach,
 -- }
 
--- Requires jedi.
--- require'lspconfig'.pylsp.setup{
---     on_attach = on_attach,
--- }
+
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+-- Requires jedi to provide Completions, Definitions, Hover, References, Signature Help, and Symbols.
+require'lspconfig'.pylsp.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
 
 -- require'lspconfig'.pyre.setup{
 --     on_attach = on_attach,
 -- }
+
 require'lspconfig'.gopls.setup{
     on_attach = on_attach,
+    capabilities = capabilities,
 }
+
+-- Many false positive warning messages.
+-- require'lspconfig'.lua_ls.setup {
+-- 	on_attach = on_attach,
+--     capabilities = capabilities,
+-- 	settings = {
+-- 		Lua = {
+-- 			runtime = {
+-- 				-- Tell the language server which version of
+-- 				-- Lua you're using (most likely LuaJIT in the
+-- 				-- case of Neovim)
+-- 				version = 'LuaJIT',
+-- 			},
+-- 			diagnostics = {
+-- 				-- Get the language server to recognize the `vim` global
+-- 				globals = {'vim'},
+-- 			},
+-- 			workspace = {
+-- 				-- Make the server aware of Neovim runtime files
+-- 				library = vim.api.nvim_get_runtime_file("", true),
+-- 			},
+-- 			-- Do not send telemetry data containing a randomized but unique identifier
+-- 			telemetry = {
+-- 				enable = false,
+-- 			},
+-- 		},
+-- 	},
+-- }
+
+-- require("clangd_extensions").setup({
+--     server = {on_attach = on_attach,}
+-- })
+
+require'lspconfig'.clangd.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+
+-- Works only in a git repositry. Need to set "root_dir" ?
+require'lspconfig'.jsonnet_ls.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+
+-- Setup lspconfig.
+-- local nvim_lsp = require('lspconfig')
+--
+-- nvim_lsp['gopls'].setup{
+--   cmd = {'gopls'},
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   settings = {
+--     gopls = {
+--       experimentalPostfixCompletions = true,
+--       analyses = {
+--         unusedparams = true,
+--         shadow = true,
+--       },
+--       staticcheck = true,
+--     },
+--   },
+--   init_options = {
+--     usePlaceholders = true,
+--   }
+-- }
