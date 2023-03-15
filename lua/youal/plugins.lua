@@ -359,10 +359,12 @@ require("lazy").setup({
 		'godlygeek/tabular' ,
 		'lukas-reineke/indent-blankline.nvim',
 		'ntpeters/vim-better-whitespace',
-		-- 'mhinz/vim-grepper',
 		'linty-org/readline.nvim',
 		'famiu/bufdelete.nvim',
 		'junegunn/goyo.vim',
 		'wellle/targets.vim',
 		'andymass/vim-matchup',
+		'preservim/tagbar',
+		'ludovicchabant/vim-gutentags',
+		-- 'mhinz/vim-grepper',
 	})
