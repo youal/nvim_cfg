@@ -122,7 +122,9 @@ require("lazy").setup({
 		"kylechui/nvim-surround",
 		lazy = false,
 		-- tag = "*",
-		config = function() require("nvim-surround").setup({}) end,
+		config = function()
+			require("nvim-surround").setup({})
+		end,
 	},
 	{
 		'simrat39/symbols-outline.nvim',
@@ -292,6 +294,12 @@ require("lazy").setup({
 				require('telescope').load_extension('fzf')
 				require("telescope").load_extension "file_browser"
 				require('telescope').load_extension('neoclip')
+
+				local builtin = require('telescope.builtin')
+				vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+				vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+				vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+				vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 			end
 		},
 		{'nvim-telescope/telescope-fzf-native.nvim', build = 'make'},
@@ -323,6 +331,7 @@ require("lazy").setup({
 		{
 			"AckslD/nvim-neoclip.lua",
 			dependencies = {
+				---@diagnostic disable-next-line: assign-type-mismatch
 				{'kkharji/sqlite.lua', module = 'sqlite'},
 				-- you'll need at least one of these
 				{'nvim-telescope/telescope.nvim'},
@@ -337,6 +346,9 @@ require("lazy").setup({
 			config = function()
 				-- Use Tab (or some other key if you prefer) to trigger visual selection
 				require('neoclip').setup({
+					store_selection_keys = "y",
+				})
+				require("luasnip").config.set_config({
 					store_selection_keys = "<Tab>",
 				})
 			end,

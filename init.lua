@@ -64,7 +64,7 @@ au FileType lisp set tabstop=2 | set shiftwidth=2
 au BufRead,BufNewFile *.ms set filetype=nroff
 
 " Eexpand and jump through snippets
-imap <silent><expr> <C-d> luasnip#expandable() ? '<Plug>luasnip-expand-snippet' : '<C-d>'
+imap <silent><expr> <C-j> luasnip#expandable() ? '<Plug>luasnip-expand-snippet' : '<C-j>'
 
 " Jump backwards through snippets
 " Uses "select" mode and not "visual" mode
@@ -77,5 +77,16 @@ smap <silent><expr> <A-n> luasnip#jumpable(1) ? '<Plug>luasnip-jump-next' : '<A-
 " Cycle forward through choice nodes with Control-f (for example)
 imap <silent><expr> <C-f> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-f>'
 smap <silent><expr> <C-f> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-f>'
+
+" " Expand snippets in insert mode with Tab
+" imap <silent><expr> <Tab> luasnip#expandable() ? '<Plug>luasnip-expand-snippet' : '<Tab>'
+"
+" " Jump forward in through tabstops in insert and visual mode with Control-f
+" imap <silent><expr> <C-f> luasnip#jumpable(1) ? '<Plug>luasnip-jump-next' : '<C-f>'
+" smap <silent><expr> <C-f> luasnip#jumpable(1) ? '<Plug>luasnip-jump-next' : '<C-f>'
+"
+" " Jump backward through snippet tabstops with Shift-Tab (for example)
+" imap <silent><expr> <S-Tab> luasnip#jumpable(-1) ? '<Plug>luasnip-jump-prev' : '<S-Tab>'
+" smap <silent><expr> <S-Tab> luasnip#jumpable(-1) ? '<Plug>luasnip-jump-prev' : '<S-Tab>'
 ]])
 require("luasnip.loaders.from_lua").lazy_load({paths = "~/.config/nvim/LuaSnip/"})
