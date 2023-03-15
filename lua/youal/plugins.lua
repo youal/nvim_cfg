@@ -72,8 +72,8 @@ require("lazy").setup({
 				ensure_installed = {
 					'gopls',
 					'shellcheck',
-					-- 'lua-language-server',
-					'luacheck',
+					'lua-language-server',
+					-- 'luacheck',
 					'clangd',
 					'jsonnet-language-server',
 					'hadolint',
