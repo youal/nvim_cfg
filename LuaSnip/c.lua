@@ -64,8 +64,7 @@ return {
 		{ trig = "unx" },
 		fmt(
 			[[
-			#include <unistd.h>
-			{}
+			#include <unistd.h>{}
 			]],
 			{i(1),}
 	)),
