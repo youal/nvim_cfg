@@ -67,7 +67,7 @@ require'nvim-treesitter.configs'.setup {
 			goto_next_start = {
 				["]m"] = "@function.outer",
 				["]]"] = "@class.outer",
-				["]s"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
+				-- ["]s"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
 				["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
 			},
 			goto_next_end = {
