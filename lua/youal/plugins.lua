@@ -79,6 +79,7 @@ require("lazy").setup({
 					'hadolint',
 					'yamllint',
 					'ansible-lint',
+					'groovy-language-server',
 				}}
 		end,
 	},

@@ -104,6 +104,14 @@ require'lspconfig'.jsonnet_ls.setup{
 	capabilities = capabilities,
 }
 
+local p = os.getenv("HOME")
+	.. "/Downloads/github/groovy-language-server/build/libs/groovy-language-server-all.jar"
+require'lspconfig'.groovyls.setup{
+	on_attach = on_attach,
+	capabilities = capabilities,
+	cmd = { "java", "-jar", p },
+}
+
 -- Setup lspconfig.
 -- local nvim_lsp = require('lspconfig')
 --
