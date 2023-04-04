@@ -62,6 +62,7 @@ au BufRead,BufNewFile *.libsonnet set filetype=jsonnet
 au FileType jsonnet set tabstop=8 | set shiftwidth=8
 au FileType lisp set tabstop=2 | set shiftwidth=2
 au BufRead,BufNewFile *.ms set filetype=nroff
+autocmd BufNewFile,BufRead *.yml,*.yaml set filetype=yaml.ansible | let g:ale_linters = {'yaml.ansible': ['ansible-lint']}
 
 " Eexpand and jump through snippets
 imap <silent><expr> <C-j> luasnip#expandable() ? '<Plug>luasnip-expand-snippet' : '<C-j>'

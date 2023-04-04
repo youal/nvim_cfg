@@ -78,6 +78,7 @@ require("lazy").setup({
 					'jsonnet-language-server',
 					'hadolint',
 					'yamllint',
+					'ansible-lint',
 				}}
 		end,
 	},
@@ -116,6 +117,7 @@ require("lazy").setup({
 					null_ls.builtins.diagnostics.chktex,
 					null_ls.builtins.diagnostics.hadolint,
 					null_ls.builtins.diagnostics.yamllint,
+					null_ls.builtins.diagnostics.ansiblelint,
 					null_ls.builtins.code_actions.shellcheck,
 					-- null_ls.builtins.code_actions.gitsigns,
 					-- null_ls.builtins.formatting.stylua,
