@@ -374,5 +374,5 @@ require("lazy").setup({
 		'andymass/vim-matchup',
 		'preservim/tagbar',
 		'ludovicchabant/vim-gutentags',
-		-- 'mhinz/vim-grepper',
+		'mhinz/vim-grepper',
 	})
