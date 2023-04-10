@@ -59,8 +59,9 @@ o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,termin
 
 vim.cmd([[
 au BufRead,BufNewFile *.libsonnet set filetype=jsonnet
-au FileType jsonnet set tabstop=8 | set shiftwidth=8
-au FileType lisp set tabstop=2 | set shiftwidth=2
+au FileType jsonnet set tabstop=8 | set shiftwidth=8 | set softtabstop=6
+au FileType lisp set tabstop=2 | set shiftwidth=2 | set softtabstop=2
+au FileType groovy set tabstop=4 | set shiftwidth=4 | set softtabstop=4
 au BufRead,BufNewFile *.ms set filetype=nroff
 autocmd BufNewFile,BufRead *.yml,*.yaml set filetype=yaml.ansible | let g:ale_linters = {'yaml.ansible': ['ansible-lint']}
 
