@@ -79,7 +79,6 @@ require("lazy").setup({
 					'hadolint',
 					'yamllint',
 					'ansible-lint',
-					'groovy-language-server',
 				}}
 		end,
 	},
@@ -149,10 +148,6 @@ require("lazy").setup({
 			})
 		end,
 		cmd = "Glow"
-	},
-	{
-		'crispgm/nvim-tabline',
-		config = true,
 	},
 	{
 		'rmagatti/auto-session',
@@ -312,29 +307,8 @@ require("lazy").setup({
 		},
 		{'nvim-telescope/telescope-fzf-native.nvim', build = 'make'},
 		{
-			'phaazon/hop.nvim',
-			branch = 'v2', -- optional but strongly recommended
-			config = function()
-				require'hop'.setup {}
-			end
-		},
-		{ 'sindrets/diffview.nvim', dependencies = 'nvim-lua/plenary.nvim' },
-		{
-			'ray-x/lsp_signature.nvim',
-			config = function()
-				require "lsp_signature".setup()
-			end,
-		},
-		{
 			"nvim-telescope/telescope-file-browser.nvim",
 			dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
-		},
-		{
-			'kosayoda/nvim-lightbulb',
-			dependencies = 'antoinemadec/FixCursorHold.nvim',
-			config = function()
-				require('nvim-lightbulb').setup({autocmd = {enabled = true}})
-			end
 		},
 		{
 			"AckslD/nvim-neoclip.lua",
@@ -350,6 +324,27 @@ require("lazy").setup({
 			end,
 		},
 		{
+			'phaazon/hop.nvim',
+			branch = 'v2', -- optional but strongly recommended
+			config = function()
+				require'hop'.setup {}
+			end
+		},
+		{ 'sindrets/diffview.nvim', dependencies = 'nvim-lua/plenary.nvim' },
+		{
+			'ray-x/lsp_signature.nvim',
+			config = function()
+				require "lsp_signature".setup()
+			end,
+		},
+		{
+			'kosayoda/nvim-lightbulb',
+			dependencies = 'antoinemadec/FixCursorHold.nvim',
+			config = function()
+				require('nvim-lightbulb').setup({autocmd = {enabled = true}})
+			end
+		},
+		{
 			'L3MON4D3/LuaSnip',
 			config = function()
 				-- Use Tab (or some other key if you prefer) to trigger visual selection
@@ -361,6 +356,11 @@ require("lazy").setup({
 				})
 			end,
 		},
+		{
+			'crispgm/nvim-tabline',
+			config = true,
+		},
+		'bfredl/nvim-ipy',
 		'nvim-treesitter/nvim-treesitter-context',
 		'tpope/vim-eunuch',
 		'tpope/vim-fugitive',
