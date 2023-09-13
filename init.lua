@@ -63,7 +63,7 @@ let g:nvim_ipy_perform_mappings = 0
 map <silent> <c-s> <Plug>(IPy-Run)
 
 au BufRead,BufNewFile *.libsonnet set filetype=jsonnet
-au FileType jsonnet set tabstop=8 | set shiftwidth=8 | set softtabstop=6
+au FileType jsonnet set tabstop=8 | set shiftwidth=8 | set softtabstop=8
 au FileType lisp set tabstop=2 | set shiftwidth=2 | set softtabstop=2
 au FileType groovy set tabstop=4 | set shiftwidth=4 | set softtabstop=4
 au BufRead,BufNewFile *.ms set filetype=nroff
