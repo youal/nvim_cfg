@@ -48,9 +48,56 @@ end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+local nvim_lsp = require('lspconfig')
+-- nvim_lsp.pylsp.setup {
+--   on_attach = function(client)
+--     -- Configure pylsp linters
+--     client.resolved_capabilities.document_formatting = true
+--     client.resolved_capabilities.document_range_formatting = true
+--     client.resolved_capabilities.code_lens = false
+--
+--     -- Specify the linters
+--     client.settings = {
 require'lspconfig'.pylsp.setup{
 	on_attach = on_attach,
 	capabilities = capabilities,
+	settings = {
+		pylsp = {
+			plugins = {
+				-- pydocstyle = {
+				-- 	enabled = true,
+				-- },
+				pycodestyle = {
+					ignore = {'E701', 'E122', 'E123', 'E126', 'E501', 'W503'},
+					enabled = false,
+				},
+				pyflakes = {
+					enabled = true,
+				},
+				pylint = {
+					enabled = false,
+				},
+				-- mypy = {
+				-- 	enabled = true,
+				-- },
+				-- flake8 = {
+				-- 	enabled = true,
+				-- },
+				-- yapf = {
+				-- 	enabled = true,
+				-- },
+				-- autoflake = {
+				-- 	enabled = true,
+				-- },
+				-- pylama = {
+				-- 	enabled = true,
+				-- },
+				-- autopep8 = {
+				-- 	enabled = true,
+				-- },
+			},
+		},
+	}
 }
 
 -- require'lspconfig'.pyre.setup{
