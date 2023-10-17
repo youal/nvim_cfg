@@ -83,15 +83,51 @@ require("lazy").setup({
 			require("nvim-autopairs").setup {}
 		end
 	},
-
---	{
---		'folke/tokyonight.nvim',
---		lazy = false,    -- make sure we load this during startup if it is your main colorscheme
---		priority = 1000, -- make sure to load this before all the other start plugins
---		config = function()
---			vim.cmd([[colorscheme tokyonight-night]])
---		end,
---	},
+	-- {
+	-- 	-- "EdenEast/nightfox.nvim",
+	-- 	-- "olimorris/onedarkpro.nvim",
+	-- 	-- "rebelot/kanagawa.nvim",
+	-- 	-- "savq/melange-nvim",
+	-- 	-- "tiagovla/tokyodark.nvim",
+	-- 	-- 'AlexvZyl/nordic.nvim',
+	-- 	-- 'Mofiqul/dracula.nvim',
+	-- 	-- 'Mofiqul/vscode.nvim',
+	-- 	-- 'RRethy/nvim-base16',
+	-- 	-- 'bluz71/vim-moonfly-colors',
+	-- 	-- 'bluz71/vim-nightfly-colors',
+	-- 	-- 'catppuccin/nvim',
+	-- 	-- 'christianchiarulli/nvcode-color-schemes.vim',
+	-- 	-- 'embark-theme/vim',
+	-- 	-- 'fenetikm/falcon',
+	-- 	-- 'folke/tokyonight.nvim',
+	-- 	-- 'frenzyexists/aquarium-vim',
+	-- 	-- 'glepnir/zephyr-nvim',
+	-- 	-- 'luisiacc/gruvbox-baby',
+	-- 	-- 'marko-cerovac/material.nvim',
+	-- 	-- 'mhartington/oceanic-next',
+	-- 	-- 'navarasu/onedark.nvim',
+	-- 	-- 'nyoom-engineering/oxocarbon.nvim',
+	-- 	-- 'olivercederborg/poimandres.nvim',
+	-- 	-- 'projekt0n/github-nvim-theme',
+	-- 	-- 'ray-x/aurora',
+	-- 	-- 'rmehri01/onenord.nvim',
+	-- 	-- 'rose-pine/neovim',
+	-- 	-- 'sainnhe/edge',
+	-- 	-- 'sainnhe/everforest',
+	-- 	-- 'sainnhe/gruvbox-material',
+	-- 	-- 'sainnhe/sonokai',
+	-- 	-- 'shaunsingh/nord.nvim',
+	-- 	-- 'tanvirtin/monokai.nvim',
+	-- 	-- 'tomasiser/vim-code-dark',
+	-- },
+	-- {
+	-- 	'folke/tokyonight.nvim',
+	-- 	lazy = false,    -- make sure we load this during startup if it is your main colorscheme
+	-- 	priority = 1000, -- make sure to load this before all the other start plugins
+	-- 	config = function()
+	-- 		vim.cmd([[colorscheme tokyonight-night]])
+	-- 	end,
+	-- },
 --	{
 --		'nvim-treesitter/nvim-treesitter-textobjects',
 --		dependencies = 'nvim-treesitter/nvim-treesitter',
