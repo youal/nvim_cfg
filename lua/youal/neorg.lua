@@ -6,7 +6,6 @@ require('neorg').setup {
 				workspaces = {
 					work = "~/notes/work",
 					home = "~/notes/home",
-					home = "~/notes/vim",
 				}
 			}
 		},
