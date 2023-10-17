@@ -29,7 +29,8 @@ local on_attach = function(_, bufnr)
 	vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
 	vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
 	vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-	vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+	-- Generate error messages
+	-- vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 end
 
 -- require'lspconfig'.jsonls.setup{
@@ -46,7 +47,7 @@ end
 -- }
 
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+-- local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local nvim_lsp = require('lspconfig')
 -- nvim_lsp.pylsp.setup {
@@ -58,60 +59,66 @@ local nvim_lsp = require('lspconfig')
 --
 --     -- Specify the linters
 --     client.settings = {
-require'lspconfig'.pylsp.setup{
-	on_attach = on_attach,
-	capabilities = capabilities,
-	settings = {
-		pylsp = {
-			plugins = {
-				-- pydocstyle = {
-				-- 	enabled = true,
-				-- },
-				pycodestyle = {
-					ignore = {'E701', 'E122', 'E123', 'E126', 'E501', 'W503'},
-					enabled = false,
-				},
-				pyflakes = {
-					enabled = true,
-				},
-				pylint = {
-					enabled = false,
-				},
-				-- mypy = {
-				-- 	enabled = true,
-				-- },
-				-- flake8 = {
-				-- 	enabled = true,
-				-- },
-				-- yapf = {
-				-- 	enabled = true,
-				-- },
-				-- autoflake = {
-				-- 	enabled = true,
-				-- },
-				-- pylama = {
-				-- 	enabled = true,
-				-- },
-				-- autopep8 = {
-				-- 	enabled = true,
-				-- },
-			},
-		},
-	}
-}
+-- require'lspconfig'.pylsp.setup{
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- 	settings = {
+-- 		pylsp = {
+-- 			plugins = {
+-- 				-- pydocstyle = {
+-- 				-- 	enabled = true,
+-- 				-- },
+-- 				pycodestyle = {
+-- 					ignore = {'E701', 'E122', 'E123', 'E126', 'E501', 'W503'},
+-- 					enabled = false,
+-- 				},
+-- 				pyflakes = {
+-- 					enabled = true,
+-- 				},
+-- 				pylint = {
+-- 					enabled = false,
+-- 				},
+-- 				-- mypy = {
+-- 				-- 	enabled = true,
+-- 				-- },
+-- 				-- flake8 = {
+-- 				-- 	enabled = true,
+-- 				-- },
+-- 				-- yapf = {
+-- 				-- 	enabled = true,
+-- 				-- },
+-- 				-- autoflake = {
+-- 				-- 	enabled = true,
+-- 				-- },
+-- 				-- pylama = {
+-- 				-- 	enabled = true,
+-- 				-- },
+-- 				-- autopep8 = {
+-- 				-- 	enabled = true,
+-- 				-- },
+-- 			},
+-- 		},
+-- 	}
+-- }
 
 -- require'lspconfig'.pyre.setup{
 --     on_attach = on_attach,
 -- }
 
+-- Python
+require'lspconfig'.ruff_lsp.setup{
+	on_attach = on_attach,
+	-- capabilities = capabilities,
+}
+
 require'lspconfig'.gopls.setup{
 	on_attach = on_attach,
-	capabilities = capabilities,
+	-- capabilities = capabilities,
 }
 
 require'lspconfig'.lua_ls.setup {
 	on_attach = on_attach,
-	capabilities = capabilities,
+	-- capabilities = capabilities,
 	settings = {
 		Lua = {
 			runtime = {
@@ -142,22 +149,22 @@ require'lspconfig'.lua_ls.setup {
 
 require'lspconfig'.clangd.setup{
 	on_attach = on_attach,
-	capabilities = capabilities,
+	-- capabilities = capabilities,
 }
 
 -- Works only in a git repositry. Need to set "root_dir" ?
 require'lspconfig'.jsonnet_ls.setup{
 	on_attach = on_attach,
-	capabilities = capabilities,
+	-- capabilities = capabilities,
 }
 
 local p = os.getenv("HOME")
 	.. "/Downloads/github/groovy-language-server/build/libs/groovy-language-server-all.jar"
-require'lspconfig'.groovyls.setup{
-	on_attach = on_attach,
-	capabilities = capabilities,
-	cmd = { "java", "-jar", p },
-}
+-- require'lspconfig'.groovyls.setup{
+-- 	on_attach = on_attach,
+-- 	-- capabilities = capabilities,
+-- 	cmd = { "java", "-jar", p },
+-- }
 
 -- Setup lspconfig.
 -- local nvim_lsp = require('lspconfig')
