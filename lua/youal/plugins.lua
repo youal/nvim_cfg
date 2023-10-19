@@ -83,63 +83,6 @@ require("lazy").setup({
 			require("nvim-autopairs").setup {}
 		end
 	},
-	-- {
-	-- 	-- "EdenEast/nightfox.nvim",
-	-- 	-- "olimorris/onedarkpro.nvim",
-	-- 	-- "rebelot/kanagawa.nvim",
-	-- 	-- "savq/melange-nvim",
-	-- 	-- "tiagovla/tokyodark.nvim",
-	-- 	-- 'AlexvZyl/nordic.nvim',
-	-- 	-- 'Mofiqul/dracula.nvim',
-	-- 	-- 'Mofiqul/vscode.nvim',
-	-- 	-- 'RRethy/nvim-base16',
-	-- 	-- 'bluz71/vim-moonfly-colors',
-	-- 	-- 'bluz71/vim-nightfly-colors',
-	-- 	-- 'catppuccin/nvim',
-	-- 	-- 'christianchiarulli/nvcode-color-schemes.vim',
-	-- 	-- 'embark-theme/vim',
-	-- 	-- 'fenetikm/falcon',
-	-- 	-- 'folke/tokyonight.nvim',
-	-- 	-- 'frenzyexists/aquarium-vim',
-	-- 	-- 'glepnir/zephyr-nvim',
-	-- 	-- 'luisiacc/gruvbox-baby',
-	-- 	-- 'marko-cerovac/material.nvim',
-	-- 	-- 'mhartington/oceanic-next',
-	-- 	-- 'navarasu/onedark.nvim',
-	-- 	-- 'nyoom-engineering/oxocarbon.nvim',
-	-- 	-- 'olivercederborg/poimandres.nvim',
-	-- 	-- 'projekt0n/github-nvim-theme',
-	-- 	-- 'ray-x/aurora',
-	-- 	-- 'rmehri01/onenord.nvim',
-	-- 	-- 'rose-pine/neovim',
-	-- 	-- 'sainnhe/edge',
-	-- 	-- 'sainnhe/everforest',
-	-- 	-- 'sainnhe/gruvbox-material',
-	-- 	-- 'sainnhe/sonokai',
-	-- 	-- 'shaunsingh/nord.nvim',
-	-- 	-- 'tanvirtin/monokai.nvim',
-	-- 	-- 'tomasiser/vim-code-dark',
-	-- },
-	-- {
-	-- 	'folke/tokyonight.nvim',
-	-- 	lazy = false,    -- make sure we load this during startup if it is your main colorscheme
-	-- 	priority = 1000, -- make sure to load this before all the other start plugins
-	-- 	config = function()
-	-- 		vim.cmd([[colorscheme tokyonight-night]])
-	-- 	end,
-	-- },
---	{
---		'nvim-treesitter/nvim-treesitter-textobjects',
---		dependencies = 'nvim-treesitter/nvim-treesitter',
---	},
-	-- {
-	-- 	-- https://github.com/williamboman/mason.nvim/blob/main/PACKAGES.md
-	-- 	-- https://github.com/williamboman/mason.nvim/wiki/Extensions
-	-- 	'williamboman/mason.nvim',
-	-- 	config = function()
-	-- 		require("mason").setup {}
-	-- 	end
-	-- },
 	{
 		-- Available servers:
 		-- https://github.com/williamboman/mason-lspconfig.nvim
@@ -204,6 +147,63 @@ require("lazy").setup({
 			vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 		end
 	},
+	-- {
+	-- 	-- "EdenEast/nightfox.nvim",
+	-- 	-- "olimorris/onedarkpro.nvim",
+	-- 	-- "rebelot/kanagawa.nvim",
+	-- 	-- "savq/melange-nvim",
+	-- 	-- "tiagovla/tokyodark.nvim",
+	-- 	-- 'AlexvZyl/nordic.nvim',
+	-- 	-- 'Mofiqul/dracula.nvim',
+	-- 	-- 'Mofiqul/vscode.nvim',
+	-- 	-- 'RRethy/nvim-base16',
+	-- 	-- 'bluz71/vim-moonfly-colors',
+	-- 	-- 'bluz71/vim-nightfly-colors',
+	-- 	-- 'catppuccin/nvim',
+	-- 	-- 'christianchiarulli/nvcode-color-schemes.vim',
+	-- 	-- 'embark-theme/vim',
+	-- 	-- 'fenetikm/falcon',
+	-- 	-- 'folke/tokyonight.nvim',
+	-- 	-- 'frenzyexists/aquarium-vim',
+	-- 	-- 'glepnir/zephyr-nvim',
+	-- 	-- 'luisiacc/gruvbox-baby',
+	-- 	-- 'marko-cerovac/material.nvim',
+	-- 	-- 'mhartington/oceanic-next',
+	-- 	-- 'navarasu/onedark.nvim',
+	-- 	-- 'nyoom-engineering/oxocarbon.nvim',
+	-- 	-- 'olivercederborg/poimandres.nvim',
+	-- 	-- 'projekt0n/github-nvim-theme',
+	-- 	-- 'ray-x/aurora',
+	-- 	-- 'rmehri01/onenord.nvim',
+	-- 	-- 'rose-pine/neovim',
+	-- 	-- 'sainnhe/edge',
+	-- 	-- 'sainnhe/everforest',
+	-- 	-- 'sainnhe/gruvbox-material',
+	-- 	-- 'sainnhe/sonokai',
+	-- 	-- 'shaunsingh/nord.nvim',
+	-- 	-- 'tanvirtin/monokai.nvim',
+	-- 	-- 'tomasiser/vim-code-dark',
+	-- },
+	-- {
+	-- 	'folke/tokyonight.nvim',
+	-- 	lazy = false,    -- make sure we load this during startup if it is your main colorscheme
+	-- 	priority = 1000, -- make sure to load this before all the other start plugins
+	-- 	config = function()
+	-- 		vim.cmd([[colorscheme tokyonight-night]])
+	-- 	end,
+	-- },
+--	{
+--		'nvim-treesitter/nvim-treesitter-textobjects',
+--		dependencies = 'nvim-treesitter/nvim-treesitter',
+--	},
+	-- {
+	-- 	-- https://github.com/williamboman/mason.nvim/blob/main/PACKAGES.md
+	-- 	-- https://github.com/williamboman/mason.nvim/wiki/Extensions
+	-- 	'williamboman/mason.nvim',
+	-- 	config = function()
+	-- 		require("mason").setup {}
+	-- 	end
+	-- },
 --	{
 --		'WhoIsSethDaniel/mason-tool-installer.nvim',
 --		config = function()
@@ -342,6 +342,21 @@ require("lazy").setup({
 --				}
 --			end
 --		},
+		-- {
+		-- 	"NeogitOrg/neogit",
+		-- 	dependencies = {
+		-- 		"nvim-lua/plenary.nvim",         -- required
+		-- 		"nvim-telescope/telescope.nvim", -- optional
+		-- 		-- "sindrets/diffview.nvim",        -- optional
+		-- 		-- "ibhagwan/fzf-lua",              -- optional
+		-- 	},
+		-- 	config = function()
+		-- 		require('neogit').setup{
+		-- 			disable_line_numbers = false,
+		-- 		}
+		-- 	end,
+		-- },
+--		{ 'sindrets/diffview.nvim', dependencies = 'nvim-lua/plenary.nvim' },
 --		{
 --			'lewis6991/gitsigns.nvim',
 --			config = function()
@@ -421,7 +436,6 @@ require("lazy").setup({
 --				require'hop'.setup {}
 --			end
 --		},
---		{ 'sindrets/diffview.nvim', dependencies = 'nvim-lua/plenary.nvim' },
 --		{
 --			'ray-x/lsp_signature.nvim',
 --			config = function()
@@ -447,7 +461,6 @@ require("lazy").setup({
 --				})
 --			end,
 --		},
---		'tpope/vim-fugitive',
 --		'lukas-reineke/indent-blankline.nvim',
 --		'famiu/bufdelete.nvim',
 --		'junegunn/goyo.vim',
@@ -456,6 +469,7 @@ require("lazy").setup({
 --		'preservim/tagbar',
 --		'ludovicchabant/vim-gutentags',
 --		'mhinz/vim-grepper',
+		'tpope/vim-fugitive',
 		'nvim-treesitter/nvim-treesitter-context',
 		'tpope/vim-eunuch',
 		'bronson/vim-trailing-whitespace',
