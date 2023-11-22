@@ -78,31 +78,61 @@ require("lazy").setup({
 		end
 	},
 	{
-		'windwp/nvim-autopairs',
+		'bfredl/nvim-ipy',
 		config = function()
-			require("nvim-autopairs").setup {}
-		end
+			vim.cmd([[
+				let g:nvim_ipy_perform_mappings = 0
+				map <silent> <c-s> <Plug>(IPy-Run)
+			]])
+		end,
 	},
 	{
-		-- Available servers:
-		-- https://github.com/williamboman/mason-lspconfig.nvim
-		"williamboman/mason-lspconfig.nvim",
-		dependencies = {
-			'williamboman/mason.nvim',
-			'neovim/nvim-lspconfig',
-		},
+		"ellisonleao/glow.nvim",
 		config = function()
-			require("mason").setup()
-			require("mason-lspconfig").setup {
-				ensure_installed = {
-					'ruff_lsp',
-					'lua_ls',
-				},
-				automatic_installation = true,
-			}
-			require("youal.lspconfig")
-		end
+			require('glow').setup({
+				width_ratio = 1.0,
+				height_ratio = 1.0,
+			})
+		end,
+		cmd = "Glow"
 	},
+	{
+		'jiangmiao/auto-pairs',
+		config = function()
+			vim.cmd([[
+				" Removes "'" and "`" from the list of pairs for lisp code
+				au BufRead,BufNewFile *.scm let g:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', '```':'```', '"""':'"""', "'''":"'''"}
+			]])
+		end,
+	},
+	-- Default settings are not good for Lisp
+	-- {
+	-- 	'windwp/nvim-autopairs',
+	-- 	config = function()
+	-- 		require("nvim-autopairs").setup {}
+	-- 	end
+	-- },
+	-- Slow to load
+	-- {
+	-- 	-- Available servers:
+	-- 	-- https://github.com/williamboman/mason-lspconfig.nvim
+	-- 	"williamboman/mason-lspconfig.nvim",
+	-- 	dependencies = {
+	-- 		'williamboman/mason.nvim',
+	-- 		'neovim/nvim-lspconfig',
+	-- 	},
+	-- 	config = function()
+	-- 		require("mason").setup()
+	-- 		require("mason-lspconfig").setup {
+	-- 			ensure_installed = {
+	-- 				'ruff_lsp',
+	-- 				'lua_ls',
+	-- 			},
+	-- 			automatic_installation = true,
+	-- 		}
+	-- 		require("youal.lspconfig")
+	-- 	end
+	-- },
 	{
 		'mfussenegger/nvim-lint',
 		config = function()
@@ -111,42 +141,43 @@ require("lazy").setup({
 			}
 		end
 	},
-	{
-		'HiPhish/nvim-ts-rainbow2',
-		config = function()
-			require("nvim-treesitter.configs").setup {
-				rainbow = {
-					enable = true,
-					-- list of languages you want to disable the plugin for
-					disable = {},
-					-- Which query to use for finding delimiters
-					query = 'rainbow-parens',
-					-- Highlight the entire buffer all at once
-					strategy = require 'ts-rainbow.strategy.global',
-				}
-			}
-		end
-	},
-	{
-		'nvim-telescope/telescope.nvim',
-		tag = '0.1.4',
-		dependencies = {
-			'nvim-lua/plenary.nvim',
-			{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-		},
-		config = function()
-			require('telescope').setup {}
-			require('telescope').load_extension('fzf')
-			-- require("telescope").load_extension "file_browser"
-			-- require('telescope').load_extension('neoclip')
-
-			local builtin = require('telescope.builtin')
-			vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-			vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-			vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-			vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-		end
-	},
+	-- Slow to load
+	-- {
+	-- 	'HiPhish/nvim-ts-rainbow2',
+	-- 	config = function()
+	-- 		require("nvim-treesitter.configs").setup {
+	-- 			rainbow = {
+	-- 				enable = true,
+	-- 				-- list of languages you want to disable the plugin for
+	-- 				disable = {},
+	-- 				-- Which query to use for finding delimiters
+	-- 				query = 'rainbow-parens',
+	-- 				-- Highlight the entire buffer all at once
+	-- 				strategy = require 'ts-rainbow.strategy.global',
+	-- 			}
+	-- 		}
+	-- 	end
+	-- },
+	-- {
+	-- 	'nvim-telescope/telescope.nvim',
+	-- 	tag = '0.1.4',
+	-- 	dependencies = {
+	-- 		'nvim-lua/plenary.nvim',
+	-- 		{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+	-- 	},
+	-- 	config = function()
+	-- 		require('telescope').setup {}
+	-- 		require('telescope').load_extension('fzf')
+	-- 		-- require("telescope").load_extension "file_browser"
+	-- 		-- require('telescope').load_extension('neoclip')
+	--
+	-- 		local builtin = require('telescope.builtin')
+	-- 		vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+	-- 		vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+	-- 		vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+	-- 		vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+	-- 	end
+	-- },
 	-- {
 	-- 	-- "EdenEast/nightfox.nvim",
 	-- 	-- "olimorris/onedarkpro.nvim",
@@ -269,16 +300,6 @@ require("lazy").setup({
 --		config = function()
 --			require("youal.symbols")
 --		end,
---	},
---	{
---		"ellisonleao/glow.nvim",
---		config = function()
---			require('glow').setup({
---				width_ratio = 1.0,
---				height_ratio = 1.0,
---			})
---		end,
---		cmd = "Glow"
 --	},
 --	{
 --		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
@@ -461,6 +482,7 @@ require("lazy").setup({
 --				})
 --			end,
 --		},
+		-- 'nvim-treesitter/nvim-treesitter-context',
 --		'lukas-reineke/indent-blankline.nvim',
 --		'famiu/bufdelete.nvim',
 --		'junegunn/goyo.vim',
@@ -468,13 +490,11 @@ require("lazy").setup({
 --		'andymass/vim-matchup',
 --		'preservim/tagbar',
 --		'ludovicchabant/vim-gutentags',
---		'mhinz/vim-grepper',
+		'mhinz/vim-grepper',
 		'tpope/vim-fugitive',
-		'nvim-treesitter/nvim-treesitter-context',
 		'tpope/vim-eunuch',
 		'bronson/vim-trailing-whitespace',
 		-- 'ntpeters/vim-better-whitespace',
 		'godlygeek/tabular' ,
 		'linty-org/readline.nvim',
-		'bfredl/nvim-ipy',
 	})
