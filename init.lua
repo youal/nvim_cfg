@@ -66,10 +66,6 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 vim.cmd([[
 colorscheme habamax
 
-" https://github.com/bfredl/nvim-ipy
-let g:nvim_ipy_perform_mappings = 0
-map <silent> <c-s> <Plug>(IPy-Run)
-
 au BufRead,BufNewFile *.libsonnet set filetype=jsonnet
 au BufRead,BufNewFile *.hql set filetype=sql
 au FileType jsonnet set tabstop=8 | set shiftwidth=8 | set softtabstop=8
