@@ -1,6 +1,5 @@
 require("youal.plugins")
 require("youal.map")
-require("youal.readline")
 
 local bo = vim.bo	-- buffer
 local wo = vim.wo	-- window
