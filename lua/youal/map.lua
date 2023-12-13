@@ -1,10 +1,13 @@
 local map = vim.api.nvim_set_keymap
 
 
+-- Usefull when need to replace what is selected by something stored in the
+-- anonymous buffer
+map('x', '<leader>p', '"_dp', {})
+
 map('n', '<S-Tab>', ':tabprevious<CR>', {})
 map('n', '<Tab>', ':tabnext<CR>', {})
 
-map('i', '<Alt><CR>m', '<CR>', {})
 map('n', '<Leader>cm', ':Neorg keybind all core.looking-glass.magnify-code-block<CR>', {})
 
 -- To escape the insert/terminal mode more easily.
