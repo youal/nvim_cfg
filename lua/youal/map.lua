@@ -4,6 +4,9 @@ local map = vim.api.nvim_set_keymap
 map('n', '<S-Tab>', ':tabprevious<CR>', {})
 map('n', '<Tab>', ':tabnext<CR>', {})
 
+map('i', '<Alt><CR>m', '<CR>', {})
+map('n', '<Leader>cm', ':Neorg keybind all core.looking-glass.magnify-code-block<CR>', {})
+
 -- To escape the insert/terminal mode more easily.
 map('t', '<Esc>', '<C-\\><C-n>', {})
 map('n', ']oh', ':nohl<CR>', {})

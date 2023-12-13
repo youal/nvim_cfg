@@ -17,26 +17,14 @@ require("lazy").setup({
 		'nvim-neorg/neorg',
 		build = ":Neorg sync-parsers",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		version = 'v6.0.0',
+		version = 'v6.2.0',
 		config = function()
 			require('neorg').setup {
 				load = {
 					["core.defaults"] = {},
-					["core.dirman"] = {
-						config = {
-							workspaces = {
-								notes = "~/notes",
-								work = "~/notes/work",
-								home = "~/notes/home",
-							},
-							default_workspace = "notes",
-						}
-					},
 					["core.concealer"] = {},
-					["core.export"] = {},
-					["core.export.markdown"] = {},
-				}
 			}
+		}
 		end,
 	},
 	{
