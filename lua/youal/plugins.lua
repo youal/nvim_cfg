@@ -172,6 +172,7 @@ require("lazy").setup({
 		config = function()
 			require('telescope').setup {}
 			require('telescope').load_extension('fzf')
+			require('telescope').load_extension('projections')
 			-- require("telescope").load_extension "file_browser"
 			-- require('telescope').load_extension('neoclip')
 
@@ -180,6 +181,17 @@ require("lazy").setup({
 			vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 			vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 			vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+			vim.keymap.set("n", "<leader>fp", function() vim.cmd("Telescope projections") end)
+		end
+	},
+	{
+		'gnikdroy/projections.nvim',
+		config = function()
+			require("projections").setup({
+				workspaces = {
+					{ "~/github", { ".git" } },
+				},
+			})
 		end
 	},
 	-- {
