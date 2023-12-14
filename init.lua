@@ -1,59 +1,5 @@
 require("youal")
 
-local bo = vim.bo	-- buffer
-local wo = vim.wo	-- window
-local o = vim.o		-- general
-
--- Usefull to search recursivelly for a file with "find" withing the cwd.
--- bo.path = bo.path .. ",./**"
-vim.opt.path:append '**'
--- vim.opt.formatoptions:append 'o'
--- bo.complete = bo.complete .. ",kspell"
-bo.textwidth = 79
-
-bo.tabstop = 8
-bo.softtabstop = bo.tabstop
-bo.shiftwidth = bo.tabstop
-o.shiftround = true
-
-wo.number = true
-wo.relativenumber = true
-wo.cursorline = true
--- wo.linebreak = true
--- Use treesiter instead
--- wo.foldmethod = "syntax"
-wo.scrolloff = 1
-
--- o.foldlevelstart = 1
-o.smartcase = true
-o.termguicolors = true
-
-o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
--- To ignore some files.
--- o.wildignore =
-
--- Might be usefull to adapt for some languages.
--- set formatoptions=cqjr1p
--- set formatprg=fmt
-
--- Has to be loaded before any other modules.
--- require('impatient')
-
--- require("youal.packer")
--- require("youal.ale")
--- require('hlargs').setup()
--- require("youal.neorg")
--- require('pqf').setup()
--- require"gitlinker".setup()
--- require("youal.autopairs")
--- require("youal.cmp")
--- require'colorizer'.setup()
--- require('nvim-ts-autotag').setup()
--- require("youal.color-picker")
--- require("youal.tagbar")
--- require("youal.tmux")
--- require("youal.sh")
--- require("youal.py")
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   callback = function()
