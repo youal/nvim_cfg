@@ -38,3 +38,15 @@ map('i', '<F3>', '<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>', {})
 map('n', '<Leader>hp', ':HopPattern<CR>', {})
 
 map('i', '<C-x><C-o>', "<Cmd>lua require('cmp').complete()<CR>", {})
+
+-- Moves the selected lines down one line, while indenting them
+map("v", "J", ":m '>+1<CR>gv=gv", {})
+map("v", "K", ":m '<-2<CR>gv=gv", {})
+
+-- Avoid to have the cursor moving when doing a join
+map('n', 'J', 'mzJ`z', {noremap = true})
+
+map('n', '<C-d>', '<C-d>zz', {})
+map('n', '<C-u>', '<C-u>zz', {})
+map('n', 'n', 'nzzzv', {})
+map('n', 'N', 'Nzzzv', {})
