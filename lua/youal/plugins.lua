@@ -186,10 +186,12 @@ require("lazy").setup({
 	},
 	{
 		'gnikdroy/projections.nvim',
+		branch = 'pre_release',
 		config = function()
 			require("projections").setup({
 				workspaces = {
 					{ "~/github", { ".git" } },
+					{ "~/github/youal", { ".git" } },
 				},
 			})
 		end
