@@ -1,6 +1,4 @@
 require("youal")
--- require("youal.plugins")
--- require("youal.map")
 
 local bo = vim.bo	-- buffer
 local wo = vim.wo	-- window
