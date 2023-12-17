@@ -1,52 +1,54 @@
-local map = vim.api.nvim_set_keymap
+-- local map.set = vim.api.nvim_set_keymap
+local map = vim.keymap
 
+map.set('n', '<leader>d', '"_d')
+map.set('n', '<leader>c', '"_c')
+map.set('n', '<leader>y', '"+y')
+map.set('n', '<leader>p', '"+p')
 
--- Usefull when need to replace what is selected by something stored in the
--- anonymous buffer
-map('x', '<leader>p', '"_dp', {})
+map.set('n', '<leader>s', ':% substitute /<C-r>w/g<Left><Left>')
+map.set('n', '<leader>x', ':silent ! chmod u+x %<Cr>')
 
-map('n', '<S-Tab>', ':tabprevious<CR>', {})
-map('n', '<Tab>', ':tabnext<CR>', {})
+map.set('v', '.', ':normal .<CR>')
 
-map('n', '<Leader>cm', ':Neorg keybind all core.looking-glass.magnify-code-block<CR>', {})
+map.set('n', '<S-Tab>', ':tabprevious<CR>', {})
+map.set('n', '<Tab>', ':tabnext<CR>', {})
 
 -- To escape the insert/terminal mode more easily.
-map('t', '<Esc>', '<C-\\><C-n>', {})
-map('n', ']oh', ':nohl<CR>', {})
+map.set('t', '<Esc>', '<C-\\><C-n>', {})
+map.set('n', ']oh', ':nohlsearch<CR>', {})
 
-map('n', '[os', ':set spell<CR>', {})
-map('n', ']os', ':set nospell<CR>', {})
+map.set('n', '[os', ':set spell<CR>', {})
+map.set('n', ']os', ':set nospell<CR>', {})
 
-map('n', '[ol', ':set list<CR>', {})
-map('n', ']ol', ':set nolist<CR>', {})
+map.set('n', '[ol', ':set list<CR>', {})
+map.set('n', ']ol', ':set nolist<CR>', {})
 
-map('n', '[q', ':cprevious<CR>', {})
-map('n', ']q', ':cnext<CR>', {})
+map.set('n', '[q', ':cprevious<CR>', {})
+map.set('n', ']q', ':cnext<CR>', {})
 
-map('n', '<Leader>dt', ':diffthis<CR>', {})
-map('n', '<Leader>dg', ':diffget<CR>', {})
-map('n', '<Leader>dp', ':diffput<CR>', {})
+map.set('n', '<Leader>dt', ':diffthis<CR>', {})
+map.set('n', '<Leader>dg', ':diffget<CR>', {})
+map.set('n', '<Leader>dp', ':diffput<CR>', {})
 
-map('n', '[ll', ':let &colorcolumn=join(range(72,999),",")<CR>', {})
-map('n', ']ll', ':let &colorcolumn=""<CR>', {})
+map.set('n', '[ll', ':let &colorcolumn=join(range(72,999),",")<CR>', {})
+map.set('n', ']ll', ':let &colorcolumn=""<CR>', {})
 
-map('n', '<F3>', 'a<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>', {})
-map('i', '<F3>', '<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>', {})
+map.set('n', '<F3>', 'a<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>', {})
+map.set('i', '<F3>', '<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>', {})
 
--- map('n', '<Leader>nc', ':set background=dark<CR>:CycleColorNext<CR>', {})
-
-map('n', '<Leader>hp', ':HopPattern<CR>', {})
-
-map('i', '<C-x><C-o>', "<Cmd>lua require('cmp').complete()<CR>", {})
+-- map.set('n', '<Leader>nc', ':set background=dark<CR>:CycleColorNext<CR>', {})
+-- map.set('i', '<C-x><C-o>', "<Cmd>lua require('cmp').complete()<CR>", {})
 
 -- Moves the selected lines down one line, while indenting them
-map("v", "J", ":m '>+1<CR>gv=gv", {})
-map("v", "K", ":m '<-2<CR>gv=gv", {})
+map.set("v", "J", ":m '>+1<CR>gv=gv", {})
+map.set("v", "K", ":m '<-2<CR>gv=gv", {})
 
 -- Avoid to have the cursor moving when doing a join
-map('n', 'J', 'mzJ`z', {noremap = true})
+map.set('n', 'J', 'mzJ`z', {noremap = true})
+map.set('n', 'gJ', 'mzgJ`z', {noremap = true})
 
-map('n', '<C-d>', '<C-d>zz', {})
-map('n', '<C-u>', '<C-u>zz', {})
-map('n', 'n', 'nzzzv', {})
-map('n', 'N', 'Nzzzv', {})
+map.set('n', '<C-d>', '<C-d>zz', {})
+map.set('n', '<C-u>', '<C-u>zz', {})
+map.set('n', 'n', 'nzzzv', {})
+map.set('n', 'N', 'Nzzzv', {})

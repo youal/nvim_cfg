@@ -21,19 +21,34 @@ o.shiftround = true
 wo.number = true
 wo.relativenumber = true
 wo.cursorline = true
--- wo.linebreak = true
+wo.linebreak = true
+wo.list = true
 -- Use treesiter instead
 -- wo.foldmethod = "syntax"
-wo.scrolloff = 8
 
 -- o.foldlevelstart = 1
 o.smartcase = true
 o.termguicolors = true
-
 o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
--- To ignore some files.
--- o.wildignore =
+o.laststatus = 0
+o.showmode = false
 
--- Might be usefull to adapt for some languages.
--- set formatoptions=cqjr1p
+opt.formatoptions = {
+	[1] = true,
+	j = true,
+	p = true,
+	c = true,
+	q = true,
+	r = true,
+}
 -- set formatprg=fmt
+
+opt.wildignore:append({
+	'*.o',
+	'*.a',
+	'__pycache__',
+})
+
+vim.cmd([[
+let mapleader = " "
+]])

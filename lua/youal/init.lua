@@ -1,6 +1,9 @@
 require("youal.set")
 require("youal.plugins")
 require("youal.map")
+require("youal.sh")
+require("youal.shebang")
+
 
 -- Has to be loaded before any other modules.
 -- require('impatient')
@@ -18,5 +21,3 @@ require("youal.map")
 -- require("youal.color-picker")
 -- require("youal.tagbar")
 -- require("youal.tmux")
--- require("youal.sh")
--- require("youal.py")

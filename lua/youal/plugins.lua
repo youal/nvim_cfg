@@ -19,6 +19,9 @@ require("lazy").setup({
 		dependencies = { "nvim-lua/plenary.nvim" },
 		version = 'v6.2.0',
 		config = function()
+			vim.keymap.set('n', '<Leader>toc', ':Neorg toc<CR>', {})
+			vim.keymap.set('n', '<Leader>cm', ':Neorg keybind all core.looking-glass.magnify-code-block<CR>', {})
+
 			require('neorg').setup {
 				load = {
 					["core.defaults"] = {},
@@ -41,12 +44,12 @@ require("lazy").setup({
 			require("auto-session").setup {}
 		end
 	},
-	{
-		'backdround/tabscope.nvim',
-		config = function()
-			require("tabscope").setup({})
-		end,
-	},
+	-- {
+	-- 	'backdround/tabscope.nvim',
+	-- 	config = function()
+	-- 		require("tabscope").setup({})
+	-- 	end,
+	-- },
 	{
 		'nvim-treesitter/nvim-treesitter',
 		build = ':TSUpdate',
@@ -172,66 +175,220 @@ require("lazy").setup({
 		config = function()
 			require('telescope').setup {}
 			require('telescope').load_extension('fzf')
-			require('telescope').load_extension('projections')
-			-- require("telescope").load_extension "file_browser"
-			-- require('telescope').load_extension('neoclip')
 
 			local builtin = require('telescope.builtin')
 			vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 			vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 			vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 			vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-			vim.keymap.set("n", "<leader>fp", function() vim.cmd("Telescope projections") end)
 		end
 	},
 	{
-		'gnikdroy/projections.nvim',
-		branch = 'pre_release',
+		"nvim-telescope/telescope-file-browser.nvim",
+		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
 		config = function()
-			require("projections").setup({
-				workspaces = {
-					{ "~/github", { ".git" } },
-					{ "~/github/youal", { ".git" } },
+			vim.keymap.set(
+				'n',
+				'<leader>fe',
+				function() vim.cmd("Telescope file_browser") end, {})
+			require("telescope").load_extension "file_browser"
+		end,
+	},
+	{
+		'is0n/fm-nvim',
+		config = function()
+			require('fm-nvim').setup{
+				-- (Vim) Command used to open files
+				edit_cmd = "edit",
+
+				-- See `Q&A` for more info
+				on_close = {},
+				on_open = {},
+
+				-- UI Options
+				ui = {
+					-- Default UI (can be "split" or "float")
+					default = "float",
+
+					float = {
+						-- Floating window border (see ':h nvim_open_win')
+						border    = "none",
+
+						-- Highlight group for floating window/border (see ':h winhl')
+						float_hl  = "Normal",
+						border_hl = "FloatBorder",
+
+						-- Floating Window Transparency (see ':h winblend')
+						blend     = 0,
+
+						-- Num from 0 - 1 for measurements
+						height    = 1.0,
+						width     = 1.0,
+
+						-- X and Y Axis of Window
+						x         = 0.5,
+						y         = 0.5
+					},
+
+					split = {
+						-- Direction of split
+						direction = "topleft",
+
+						-- Size of split
+						size      = 24
+					}
 				},
-			})
-		end
+
+				-- Terminal commands used w/ file manager (have to be in your $PATH)
+				cmds = {
+					lf_cmd      = "lf", -- eg: lf_cmd = "lf -command 'set hidden'"
+					fm_cmd      = "fm",
+					nnn_cmd     = "nnn",
+					fff_cmd     = "fff",
+					twf_cmd     = "twf",
+					fzf_cmd     = "fzf", -- eg: fzf_cmd = "fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
+					fzy_cmd     = "find . | fzy",
+					xplr_cmd    = "xplr",
+					vifm_cmd    = "vifm",
+					skim_cmd    = "sk",
+					broot_cmd   = "broot",
+					gitui_cmd   = "gitui",
+					ranger_cmd  = "ranger",
+					joshuto_cmd = "joshuto",
+					lazygit_cmd = "lazygit",
+					neomutt_cmd = "neomutt",
+					taskwarrior_cmd = "taskwarrior-tui"
+				},
+
+				-- Mappings used with the plugin
+				mappings = {
+					vert_split = "<C-v>",
+					horz_split = "<C-h>",
+					tabedit    = "<C-t>",
+					edit       = "<C-e>",
+					ESC        = "<ESC>"
+				},
+
+				-- Path to broot config
+				broot_conf = vim.fn.stdpath("data") .. "/site/pack/packer/start/fm-nvim/assets/broot_conf.hjson"
+			}
+		end,
+	},
+	{
+		"nvim-telescope/telescope-frecency.nvim",
+		config = function()
+			vim.keymap.set(
+				'n',
+				'<leader>fF',
+				function() vim.cmd("Telescope frecency") end, {})
+
+			require("telescope").load_extension "frecency"
+		end,
 	},
 	-- {
-	-- 	-- "EdenEast/nightfox.nvim",
-	-- 	-- "olimorris/onedarkpro.nvim",
-	-- 	-- "rebelot/kanagawa.nvim",
-	-- 	-- "savq/melange-nvim",
-	-- 	-- "tiagovla/tokyodark.nvim",
-	-- 	-- 'AlexvZyl/nordic.nvim',
-	-- 	-- 'Mofiqul/dracula.nvim',
-	-- 	-- 'Mofiqul/vscode.nvim',
-	-- 	-- 'RRethy/nvim-base16',
-	-- 	-- 'bluz71/vim-moonfly-colors',
-	-- 	-- 'bluz71/vim-nightfly-colors',
-	-- 	-- 'catppuccin/nvim',
-	-- 	-- 'christianchiarulli/nvcode-color-schemes.vim',
-	-- 	-- 'embark-theme/vim',
-	-- 	-- 'fenetikm/falcon',
-	-- 	-- 'folke/tokyonight.nvim',
-	-- 	-- 'frenzyexists/aquarium-vim',
-	-- 	-- 'glepnir/zephyr-nvim',
-	-- 	-- 'luisiacc/gruvbox-baby',
-	-- 	-- 'marko-cerovac/material.nvim',
-	-- 	-- 'mhartington/oceanic-next',
-	-- 	-- 'navarasu/onedark.nvim',
-	-- 	-- 'nyoom-engineering/oxocarbon.nvim',
-	-- 	-- 'olivercederborg/poimandres.nvim',
-	-- 	-- 'projekt0n/github-nvim-theme',
-	-- 	-- 'ray-x/aurora',
-	-- 	-- 'rmehri01/onenord.nvim',
-	-- 	-- 'rose-pine/neovim',
-	-- 	-- 'sainnhe/edge',
-	-- 	-- 'sainnhe/everforest',
-	-- 	-- 'sainnhe/gruvbox-material',
-	-- 	-- 'sainnhe/sonokai',
-	-- 	-- 'shaunsingh/nord.nvim',
-	-- 	-- 'tanvirtin/monokai.nvim',
-	-- 	-- 'tomasiser/vim-code-dark',
+	-- 	"nvim-telescope/telescope-project.nvim",
+	-- 	config = function()
+	-- 		require'telescope'.load_extension('project')
+	-- 	end,
+	-- },
+	{
+		"natecraddock/workspaces.nvim",
+		dependencies = {
+			{'nvim-telescope/telescope.nvim'},
+		},
+		config = function()
+			require('telescope').load_extension("workspaces")
+			vim.keymap.set(
+				'n',
+				'<leader>fw',
+				function() vim.cmd("Telescope workspaces") end, {})
+
+			require("workspaces").setup({
+				    cd_type = "tab",
+			})
+		end,
+	},
+	{
+		"lpoto/telescope-docker.nvim",
+		dependencies = {
+			{'nvim-telescope/telescope.nvim'},
+		},
+		config = function()
+			require("telescope").setup {
+				-- extensions = {
+				-- 	docker = {
+				-- 		theme = "ivy",
+				-- 		binary = "podman",
+				-- 		compose_binary = "docker compose",
+				-- 		buildx_binary = "docker buildx",
+				-- 		machine_binary = "docker-machine",
+				-- 		log_level = vim.log.levels.INFO,
+				-- 		"vsplit new", "split new", ...
+				-- 		init_term = "tabnew",
+				-- 	},
+				-- },
+
+				vim.keymap.set(
+					'n',
+					'<leader>fd',
+					function() vim.cmd("Telescope docker") end, {})
+			}
+
+			require("telescope").load_extension "docker"
+		end,
+	},
+	{
+		"AckslD/nvim-neoclip.lua",
+		dependencies = {
+			---@diagnostic disable-next-line: assign-type-mismatch
+			{'kkharji/sqlite.lua', module = 'sqlite'},
+			-- you'll need at least one of these
+			{'nvim-telescope/telescope.nvim'},
+			-- {'ibhagwan/fzf-lua'},
+		},
+		config = function()
+			require('telescope').load_extension('neoclip')
+			require('neoclip').setup()
+		end,
+	},
+
+	-- Colorscheme
+	-- {
+	-- 	"EdenEast/nightfox.nvim",
+	-- 	"olimorris/onedarkpro.nvim",
+	-- 	"rebelot/kanagawa.nvim",
+	-- 	"savq/melange-nvim",
+	-- 	"tiagovla/tokyodark.nvim",
+	-- 	'AlexvZyl/nordic.nvim',
+	-- 	'Mofiqul/dracula.nvim',
+	-- 	'Mofiqul/vscode.nvim',
+	-- 	'RRethy/nvim-base16',
+	-- 	'bluz71/vim-moonfly-colors',
+	-- 	'bluz71/vim-nightfly-colors',
+	-- 	'catppuccin/nvim',
+	-- 	'christianchiarulli/nvcode-color-schemes.vim',
+	-- 	'embark-theme/vim',
+	-- 	'fenetikm/falcon',
+	-- 	'folke/tokyonight.nvim',
+	-- 	'frenzyexists/aquarium-vim',
+	-- 	'glepnir/zephyr-nvim',
+	-- 	'luisiacc/gruvbox-baby',
+	-- 	'marko-cerovac/material.nvim',
+	-- 	'mhartington/oceanic-next',
+	-- 	'navarasu/onedark.nvim',
+	-- 	'nyoom-engineering/oxocarbon.nvim',
+	-- 	'olivercederborg/poimandres.nvim',
+	-- 	'projekt0n/github-nvim-theme',
+	-- 	'ray-x/aurora',
+	-- 	'rmehri01/onenord.nvim',
+	-- 	'rose-pine/neovim',
+	-- 	'sainnhe/edge',
+	-- 	'sainnhe/everforest',
+	-- 	'sainnhe/gruvbox-material',
+	-- 	'sainnhe/sonokai',
+	-- 	'shaunsingh/nord.nvim',
+	-- 	'tanvirtin/monokai.nvim',
+	-- 	'tomasiser/vim-code-dark',
 	-- },
 	-- {
 	-- 	'folke/tokyonight.nvim',
@@ -241,10 +398,14 @@ require("lazy").setup({
 	-- 		vim.cmd([[colorscheme tokyonight-night]])
 	-- 	end,
 	-- },
---	{
---		'nvim-treesitter/nvim-treesitter-textobjects',
---		dependencies = 'nvim-treesitter/nvim-treesitter',
---	},
+
+	-- Treesitter
+	-- {
+	-- 	'nvim-treesitter/nvim-treesitter-textobjects',
+	-- 	dependencies = 'nvim-treesitter/nvim-treesitter',
+	-- },
+
+	-- LSP
 	-- {
 	-- 	-- https://github.com/williamboman/mason.nvim/blob/main/PACKAGES.md
 	-- 	-- https://github.com/williamboman/mason.nvim/wiki/Extensions
@@ -253,266 +414,267 @@ require("lazy").setup({
 	-- 		require("mason").setup {}
 	-- 	end
 	-- },
---	{
---		'WhoIsSethDaniel/mason-tool-installer.nvim',
---		config = function()
---			require('mason-tool-installer').setup {
---				ensure_installed = {
---					'gopls',
---					'shellcheck',
---					'lua-language-server',
---					-- 'luacheck',
---					'clangd',
---					'jsonnet-language-server',
---					'hadolint',
---					'yamllint',
---					'ansible-lint',
---				}}
---		end,
---	},
---	{
---		-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
---		-- https://github.com/neovim/nvim-lspconfig/wiki/Language-specific-plugins
---		-- https://github.com/neovim/nvim-lspconfig/wiki/Snippets
---		"neovim/nvim-lspconfig",
---		config = function()
---			require("youal.lspconfig")
---		end,
---	},
---	-- What is the difference with mason-tool-installer ?
---	-- {
---	-- 	'jay-babu/mason-null-ls.nvim',
---	-- 	config = function()
---	-- 		require("mason-null-ls").setup({
---	-- 			ensure_installed = {"shellcheck"}
---	-- 		})
---	-- 	end
---	-- },
---	{
---		-- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
---		"jose-elias-alvarez/null-ls.nvim",
---		dependencies = 'nvim-lua/plenary.nvim',
---		config = function()
---			local null_ls = require("null-ls")
---			null_ls.setup {
---				sources = {
---					-- Extremely heavy. Makes my laptop crash when reading
---					-- the code of Kubernetes.
---					-- null_ls.builtins.diagnostics.staticcheck,
---					-- null_ls.builtins.diagnostics.revive,
---					-- null_ls.builtins.diagnostics.luacheck,
---					null_ls.builtins.diagnostics.shellcheck,
---					null_ls.builtins.diagnostics.chktex,
---					null_ls.builtins.diagnostics.hadolint,
---					null_ls.builtins.diagnostics.yamllint,
---					null_ls.builtins.diagnostics.ansiblelint,
---					null_ls.builtins.code_actions.shellcheck,
---					-- null_ls.builtins.code_actions.gitsigns,
---					-- null_ls.builtins.formatting.stylua,
---					-- null_ls.builtins.completion.spell,
---				}}
---		end,
---	},
---	{
---		'simrat39/symbols-outline.nvim',
---		config = function()
---			require("youal.symbols")
---		end,
---	},
---	{
---		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
---		config = function()
---			vim.diagnostic.config({virtual_text = false,})
---			require("lsp_lines").setup()
---		end,
---	},
---	{
---		'hrsh7th/nvim-cmp',
---		dependencies = {
---			'hrsh7th/cmp-nvim-lsp',
---			'hrsh7th/cmp-buffer',
---			'saadparwaiz1/cmp_luasnip',
---		},
---		config = function()
---			local cmp = require'cmp'
---
---			cmp.setup({
---				snippet = {
---					-- REQUIRED - you must specify a snippet engine
---					expand = function(args)
---						-- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
---						require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
---						-- require('snippy').expand_snippet(args.body) -- For `snippy` users.
---						-- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
---					end,
---				},
---				-- window = {
---					-- 	-- completion = cmp.config.window.bordered(),
---					-- 	-- documentation = cmp.config.window.bordered(),
---					-- },
---					mapping = cmp.mapping.preset.insert({
---						['<C-b>'] = cmp.mapping.scroll_docs(-4),
---						['<C-f>'] = cmp.mapping.scroll_docs(4),
---						['<C-Space>'] = cmp.mapping.complete(),
---						['<C-e>'] = cmp.mapping.abort(),
---						['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
---					}),
---					sources = cmp.config.sources({
---						{ name = 'nvim_lsp' },
---						-- { name = 'vsnip' }, -- For vsnip users.
---						{ name = 'luasnip' }, -- For luasnip users.
---						-- { name = 'ultisnips' }, -- For ultisnips users.
---						-- { name = 'snippy' }, -- For snippy users.
---					}, {
---						{ name = 'buffer' },
---					})
---				})
---
---			end,
---		},
---		{
---			"folke/trouble.nvim",
---			dependencies = "nvim-tree/nvim-web-devicons",
---			config = function()
---				require("trouble").setup {
---					-- your configuration comes here
---					-- or leave it empty to use the default settings
---					-- refer to the configuration section below
---				}
---			end
---		},
-		-- {
-		-- 	"NeogitOrg/neogit",
-		-- 	dependencies = {
-		-- 		"nvim-lua/plenary.nvim",         -- required
-		-- 		"nvim-telescope/telescope.nvim", -- optional
-		-- 		-- "sindrets/diffview.nvim",        -- optional
-		-- 		-- "ibhagwan/fzf-lua",              -- optional
-		-- 	},
-		-- 	config = function()
-		-- 		require('neogit').setup{
-		-- 			disable_line_numbers = false,
-		-- 		}
-		-- 	end,
-		-- },
---		{ 'sindrets/diffview.nvim', dependencies = 'nvim-lua/plenary.nvim' },
---		{
---			'lewis6991/gitsigns.nvim',
---			config = function()
---				require("gitsigns").setup {
---					on_attach = function(bufnr)
---						local gs = package.loaded.gitsigns
---
---						local function map(mode, l, r, opts)
---							opts = opts or {}
---							opts.buffer = bufnr
---							vim.keymap.set(mode, l, r, opts)
---						end
---
---						-- Navigation
---						map('n', ']c', function()
---							if vim.wo.diff then return ']c' end
---							vim.schedule(function() gs.next_hunk() end)
---							return '<Ignore>'
---						end, {expr=true})
---
---						map('n', '[c', function()
---							if vim.wo.diff then return '[c' end
---							vim.schedule(function() gs.prev_hunk() end)
---							return '<Ignore>'
---						end, {expr=true})
---
---						-- Actions
---						map({'n', 'v'}, '<leader>hs', ':Gitsigns stage_hunk<CR>')
---						map({'n', 'v'}, '<leader>hr', ':Gitsigns reset_hunk<CR>')
---						map('n', '<leader>hS', gs.stage_buffer)
---						map('n', '<leader>hu', gs.undo_stage_hunk)
---						map('n', '<leader>hR', gs.reset_buffer)
---						map('n', '<leader>hp', gs.preview_hunk)
---						map('n', '<leader>hb', function() gs.blame_line{full=true} end)
---						map('n', '<leader>tb', gs.toggle_current_line_blame)
---						map('n', '<leader>hd', gs.diffthis)
---						map('n', '<leader>hD', function() gs.diffthis('~') end)
---						map('n', '<leader>td', gs.toggle_deleted)
---
---						-- Text object
---						map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
---					end
---				}
---			end
---		},
---		{
---			"folke/twilight.nvim",
---			config = function()
---				require("twilight").setup {
---					-- your configuration comes here
---					-- or leave it empty to use the default settings
---					-- refer to the configuration section below
---				}
---			end
---		},
---		{
---			"nvim-telescope/telescope-file-browser.nvim",
---			dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
---		},
---		{
---			"AckslD/nvim-neoclip.lua",
---			dependencies = {
---				---@diagnostic disable-next-line: assign-type-mismatch
---				{'kkharji/sqlite.lua', module = 'sqlite'},
---				-- you'll need at least one of these
---				{'nvim-telescope/telescope.nvim'},
---				-- {'ibhagwan/fzf-lua'},
---			},
---			config = function()
---				require('neoclip').setup()
---			end,
---		},
---		{
---			'phaazon/hop.nvim',
---			branch = 'v2', -- optional but strongly recommended
---			config = function()
---				require'hop'.setup {}
---			end
---		},
---		{
---			'ray-x/lsp_signature.nvim',
---			config = function()
---				require "lsp_signature".setup()
---			end,
---		},
---		{
---			'kosayoda/nvim-lightbulb',
---			dependencies = 'antoinemadec/FixCursorHold.nvim',
---			config = function()
---				require('nvim-lightbulb').setup({autocmd = {enabled = true}})
---			end
---		},
---		{
---			'L3MON4D3/LuaSnip',
---			config = function()
---				-- Use Tab (or some other key if you prefer) to trigger visual selection
---				require('neoclip').setup({
---					store_selection_keys = "y",
---				})
---				require("luasnip").config.set_config({
---					store_selection_keys = "<Tab>",
---				})
---			end,
---		},
-		-- 'nvim-treesitter/nvim-treesitter-context',
---		'lukas-reineke/indent-blankline.nvim',
---		'famiu/bufdelete.nvim',
---		'junegunn/goyo.vim',
---		'wellle/targets.vim',
---		'andymass/vim-matchup',
---		'preservim/tagbar',
---		'ludovicchabant/vim-gutentags',
-		-- 'mhinz/vim-grepper',
-		'tpope/vim-fugitive',
-		'tpope/vim-eunuch',
-		'bronson/vim-trailing-whitespace',
-		-- 'ntpeters/vim-better-whitespace',
-		'godlygeek/tabular',
-		'mbbill/undotree',
-	})
+	-- {
+	-- 	'WhoIsSethDaniel/mason-tool-installer.nvim',
+	-- 	config = function()
+	-- 		require('mason-tool-installer').setup {
+	-- 			ensure_installed = {
+	-- 				'gopls',
+	-- 				'shellcheck',
+	-- 				'lua-language-server',
+	-- 				-- 'luacheck',
+	-- 				'clangd',
+	-- 				'jsonnet-language-server',
+	-- 				'hadolint',
+	-- 				'yamllint',
+	-- 				'ansible-lint',
+	-- 			}}
+	-- 	end,
+	-- },
+	-- {
+	-- 	-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+	-- 	-- https://github.com/neovim/nvim-lspconfig/wiki/Language-specific-plugins
+	-- 	-- https://github.com/neovim/nvim-lspconfig/wiki/Snippets
+	-- 	"neovim/nvim-lspconfig",
+	-- 	config = function()
+	-- 		require("youal.lspconfig")
+	-- 	end,
+	-- },
+	-- What is the difference with mason-tool-installer ?
+	-- {
+	-- 	'jay-babu/mason-null-ls.nvim',
+	-- 	config = function()
+	-- 		require("mason-null-ls").setup({
+	-- 			ensure_installed = {"shellcheck"}
+	-- 		})
+	-- 	end
+	-- },
+	-- Dead ?
+	-- {
+	-- 	-- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
+	-- 	"jose-elias-alvarez/null-ls.nvim",
+	-- 	dependencies = 'nvim-lua/plenary.nvim',
+	-- 	config = function()
+	-- 		local null_ls = require("null-ls")
+	-- 		null_ls.setup {
+	-- 			sources = {
+	-- 				-- Extremely heavy. Makes my laptop crash when reading
+	-- 				-- the code of Kubernetes.
+	-- 				-- null_ls.builtins.diagnostics.staticcheck,
+	-- 				-- null_ls.builtins.diagnostics.revive,
+	-- 				-- null_ls.builtins.diagnostics.luacheck,
+	-- 				null_ls.builtins.diagnostics.shellcheck,
+	-- 				null_ls.builtins.diagnostics.chktex,
+	-- 				null_ls.builtins.diagnostics.hadolint,
+	-- 				null_ls.builtins.diagnostics.yamllint,
+	-- 				null_ls.builtins.diagnostics.ansiblelint,
+	-- 				null_ls.builtins.code_actions.shellcheck,
+	-- 				-- null_ls.builtins.code_actions.gitsigns,
+	-- 				-- null_ls.builtins.formatting.stylua,
+	-- 				-- null_ls.builtins.completion.spell,
+	-- 			}}
+	-- 	end,
+	-- },
+	-- {
+	-- 	'simrat39/symbols-outline.nvim',
+	-- 	config = function()
+	-- 		require("youal.symbols")
+	-- 	end,
+	-- },
+	-- {
+	-- 	"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+	-- 	config = function()
+	-- 		vim.diagnostic.config({virtual_text = false,})
+	-- 		require("lsp_lines").setup()
+	-- 	end,
+	-- },
+	-- {
+	-- 	"folke/trouble.nvim",
+	-- 	dependencies = "nvim-tree/nvim-web-devicons",
+	-- 	config = function()
+	-- 		require("trouble").setup {
+	-- 			-- your configuration comes here
+	-- 			-- or leave it empty to use the default settings
+	-- 			-- refer to the configuration section below
+	-- 		}
+	-- 	end
+	-- },
+	-- {
+	-- 	-- https://github.com/williamboman/mason.nvim/blob/main/PACKAGES.md
+	-- 	-- https://github.com/williamboman/mason.nvim/wiki/Extensions
+	-- 	'williamboman/mason.nvim',
+	-- 	config = function()
+	-- 		require("mason").setup {}
+	-- 	end
+	-- },
+	-- {
+	-- 	'WhoIsSethDaniel/mason-tool-installer.nvim',
+	-- 	config = function()
+	-- 		require('mason-tool-installer').setup {
+	-- 			ensure_installed = {
+
+	-- Completion
+	-- {
+	-- 	'hrsh7th/nvim-cmp',
+	-- 	dependencies = {
+	-- 		'hrsh7th/cmp-nvim-lsp',
+	-- 		'hrsh7th/cmp-buffer',
+	-- 		'saadparwaiz1/cmp_luasnip',
+	-- 	},
+	-- 	config = function()
+	-- 		local cmp = require'cmp'
+	--
+	-- 		cmp.setup({
+	-- 			snippet = {
+	-- 				-- REQUIRED - you must specify a snippet engine
+	-- 				expand = function(args)
+	-- 					-- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+	-- 					require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+	-- 					-- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+	-- 					-- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+	-- 				end,
+	-- 			},
+	-- 			-- window = {
+	-- 				-- 	-- completion = cmp.config.window.bordered(),
+	-- 				-- 	-- documentation = cmp.config.window.bordered(),
+	-- 				-- },
+	-- 				mapping = cmp.mapping.preset.insert({
+	-- 					['<C-b>'] = cmp.mapping.scroll_docs(-4),
+	-- 					['<C-f>'] = cmp.mapping.scroll_docs(4),
+	-- 					['<C-Space>'] = cmp.mapping.complete(),
+	-- 					['<C-e>'] = cmp.mapping.abort(),
+	-- 					['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+	-- 				}),
+	-- 				sources = cmp.config.sources({
+	-- 					{ name = 'nvim_lsp' },
+	-- 					-- { name = 'vsnip' }, -- For vsnip users.
+	-- 					{ name = 'luasnip' }, -- For luasnip users.
+	-- 					-- { name = 'ultisnips' }, -- For ultisnips users.
+	-- 					-- { name = 'snippy' }, -- For snippy users.
+	-- 				}, {
+	-- 					{ name = 'buffer' },
+	-- 				})
+	-- 			})
+	--
+	-- 		end,
+	-- 	},
+
+	-- Git
+	-- {
+	-- 	"NeogitOrg/neogit",
+	-- 	dependencies = {
+	-- 		"nvim-lua/plenary.nvim",         -- required
+	-- 		"nvim-telescope/telescope.nvim", -- optional
+	-- 		-- "sindrets/diffview.nvim",        -- optional
+	-- 		-- "ibhagwan/fzf-lua",              -- optional
+	-- 	},
+	-- 	config = function()
+	-- 		require('neogit').setup{
+	-- 			disable_line_numbers = false,
+	-- 		}
+	-- 	end,
+	-- },
+	-- { 'sindrets/diffview.nvim', dependencies = 'nvim-lua/plenary.nvim' },
+	-- {
+	-- 	'lewis6991/gitsigns.nvim',
+	-- 	config = function()
+	-- 		require("gitsigns").setup {
+	-- 			on_attach = function(bufnr)
+	-- 				local gs = package.loaded.gitsigns
+	--
+	-- 				local function map(mode, l, r, opts)
+	-- 					opts = opts or {}
+	-- 					opts.buffer = bufnr
+	-- 					vim.keymap.set(mode, l, r, opts)
+	-- 				end
+	--
+	-- 				-- Navigation
+	-- 				map('n', ']c', function()
+	-- 					if vim.wo.diff then return ']c' end
+	-- 					vim.schedule(function() gs.next_hunk() end)
+	-- 					return '<Ignore>'
+	-- 				end, {expr=true})
+	--
+	-- 				map('n', '[c', function()
+	-- 					if vim.wo.diff then return '[c' end
+	-- 					vim.schedule(function() gs.prev_hunk() end)
+	-- 					return '<Ignore>'
+	-- 				end, {expr=true})
+	--
+	-- 				-- Actions
+	-- 				map({'n', 'v'}, '<leader>hs', ':Gitsigns stage_hunk<CR>')
+	-- 				map({'n', 'v'}, '<leader>hr', ':Gitsigns reset_hunk<CR>')
+	-- 				map('n', '<leader>hS', gs.stage_buffer)
+	-- 				map('n', '<leader>hu', gs.undo_stage_hunk)
+	-- 				map('n', '<leader>hR', gs.reset_buffer)
+	-- 				map('n', '<leader>hp', gs.preview_hunk)
+	-- 				map('n', '<leader>hb', function() gs.blame_line{full=true} end)
+	-- 				map('n', '<leader>tb', gs.toggle_current_line_blame)
+	-- 				map('n', '<leader>hd', gs.diffthis)
+	-- 				map('n', '<leader>hD', function() gs.diffthis('~') end)
+	-- 				map('n', '<leader>td', gs.toggle_deleted)
+	--
+	-- 				-- Text object
+	-- 				map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+	-- 			end
+	-- 		}
+	-- 	end
+	-- },
+
+	-- Zen mode
+	-- {
+	-- 	"folke/twilight.nvim",
+	-- 	config = function()
+	-- 		require("twilight").setup {
+	-- 			-- your configuration comes here
+	-- 			-- or leave it empty to use the default settings
+	-- 			-- refer to the configuration section below
+	-- 		}
+	-- 	end
+	-- },
+
+	-- Jump
+	-- {
+	-- 	'phaazon/hop.nvim',
+	-- 	branch = 'v2', -- optional but strongly recommended
+	-- 	config = function()
+	-- 		require'hop'.setup {}
+	-- 	end
+	-- },
+
+	-- Snipets
+	-- {
+	-- 	'L3MON4D3/LuaSnip',
+	-- 	config = function()
+	-- 		-- Use Tab (or some other key if you prefer) to trigger visual selection
+	-- 		require('neoclip').setup({
+	-- 			store_selection_keys = "y",
+	-- 		})
+	-- 		require("luasnip").config.set_config({
+	-- 			store_selection_keys = "<Tab>",
+	-- 		})
+	-- 	end,
+	-- },
+
+	-- 'nvim-treesitter/nvim-treesitter-context',
+	-- 'lukas-reineke/indent-blankline.nvim',
+	-- 'famiu/bufdelete.nvim',
+	-- 'junegunn/goyo.vim',
+	-- 'wellle/targets.vim',
+	-- 'andymass/vim-matchup',
+	-- 'preservim/tagbar',
+	-- 'ludovicchabant/vim-gutentags',
+	-- 'mhinz/vim-grepper',
+	'tpope/vim-fugitive',
+	'tpope/vim-eunuch',
+	'mbbill/undotree',
+	"nvim-tree/nvim-web-devicons",
+
+	'bronson/vim-trailing-whitespace',
+	-- 'ntpeters/vim-better-whitespace',
+
+	'junegunn/vim-easy-align',
+	-- 'godlygeek/tabular',
+	-- 'tommcdo/vim-lion',
+	-- 'vim-scripts/Align',
+})
