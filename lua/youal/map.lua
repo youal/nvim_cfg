@@ -41,8 +41,8 @@ map.set('i', '<F3>', '<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>', {})
 -- map.set('i', '<C-x><C-o>', "<Cmd>lua require('cmp').complete()<CR>", {})
 
 -- Moves the selected lines down one line, while indenting them
-map.set("v", "J", ":m '>+1<CR>gv=gv", {})
-map.set("v", "K", ":m '<-2<CR>gv=gv", {})
+map.set("v", "<C-j>", ":m '>+1<CR>gv=gv", {})
+map.set("v", "<C-k>", ":m '<-2<CR>gv=gv", {})
 
 -- Avoid to have the cursor moving when doing a join
 map.set('n', 'J', 'mzJ`z', {noremap = true})
