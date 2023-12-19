@@ -2,13 +2,12 @@ local map = vim.keymap
 local create_autocmd = vim.api.nvim_create_autocmd
 
 
-function create_shebang_auto_cmd(args)
+local function create_shebang_auto_cmd(args)
 	create_autocmd('FileType', {
 		pattern = args['filetype'],
 		callback = function()
 			map.set('n', '<Leader>sb',
-			'i#! /usr/bin/env ' .. args['interpreter'] .. '<C-[>o<C-m><C-m>',
-		-- '<cmd>write | Chmod u+x<Cr>i#! /usr/bin/env sh<C-[>o<C-m><C-m>',
+			'mzggO#! /usr/bin/env ' .. args['interpreter'] .. '<C-[>`z',
 			{})
 		end
 	})

@@ -48,6 +48,12 @@ opt.wildignore:append({
 	'__pycache__',
 })
 
+opt.splitbelow = true
+opt.splitright = true
+
+opt.inccommand = 'split'
+opt.virtualedit = 'block'
+
 vim.cmd.colorscheme('habamax')
 vim.cmd([[
 let mapleader = " "

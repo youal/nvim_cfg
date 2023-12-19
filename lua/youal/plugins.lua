@@ -1,3 +1,5 @@
+vim.loader.enable()
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -18,6 +20,7 @@ require("lazy").setup({
 		build = ":Neorg sync-parsers",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		version = 'v6.2.0',
+		ft = "norg",
 		config = function()
 			vim.keymap.set('n', '<Leader>toc', ':Neorg toc<CR>', {})
 			vim.keymap.set('n', '<Leader>cm', ':Neorg keybind all core.looking-glass.magnify-code-block<CR>', {})
@@ -157,26 +160,31 @@ require("lazy").setup({
 	-- 		require("youal.lspconfig")
 	-- 	end
 	-- },
-	-- Slow to load
-	-- {
-	-- 	'HiPhish/nvim-ts-rainbow2',
-	-- 	config = function()
-	-- 		require("nvim-treesitter.configs").setup {
-	-- 			rainbow = {
-	-- 				enable = true,
-	-- 				-- list of languages you want to disable the plugin for
-	-- 				disable = {},
-	-- 				-- Which query to use for finding delimiters
-	-- 				query = 'rainbow-parens',
-	-- 				-- Highlight the entire buffer all at once
-	-- 				strategy = require 'ts-rainbow.strategy.global',
-	-- 			}
-	-- 		}
-	-- 	end
-	-- },
+	{
+		'HiPhish/nvim-ts-rainbow2',
+		keys = {
+			{ "<leader>lr", "<cmd>Lazy load nvim-ts-rainbow2<cr>", },
+		},
+		config = function()
+			require("nvim-treesitter.configs").setup {
+				rainbow = {
+					enable = true,
+					-- list of languages you want to disable the plugin for
+					disable = {},
+					-- Which query to use for finding delimiters
+					query = 'rainbow-parens',
+					-- Highlight the entire buffer all at once
+					strategy = require 'ts-rainbow.strategy.global',
+				}
+			}
+		end
+	},
 	{
 		'nvim-telescope/telescope.nvim',
 		tag = '0.1.5',
+		keys = {
+			{ "<leader>lF", "<cmd>Lazy load telescope.nvim<cr>", },
+		},
 		dependencies = {
 			'nvim-lua/plenary.nvim',
 			{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
@@ -190,29 +198,43 @@ require("lazy").setup({
 			vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 			vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 			vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-		end
-	},
-	{
-		"LukasPietzschmann/telescope-tabs",
-		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-		config = function()
+
+			vim.keymap.set(
+				'n',
+				'<leader>fw',
+				function() vim.cmd("Telescope workspaces") end, {})
+
+			vim.keymap.set(
+				'n',
+				'<leader>fd',
+				function() vim.cmd("Telescope docker") end, {})
+
 			vim.keymap.set(
 				'n',
 				'<leader>ft',
 				function() vim.cmd("Telescope telescope-tabs list_tabs") end, {})
-			require('telescope-tabs')
-		end,
-	},
-	{
-		"nvim-telescope/telescope-file-browser.nvim",
-		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-		config = function()
+
 			vim.keymap.set(
 				'n',
 				'<leader>fe',
 				function() vim.cmd("Telescope file_browser") end, {})
-			require("telescope").load_extension "file_browser"
-		end,
+
+			vim.keymap.set(
+				'n',
+				'<leader>fF',
+				function() vim.cmd("Telescope frecency") end, {})
+
+		end
+	},
+	{
+		"LukasPietzschmann/telescope-tabs",
+		cmd = "Telescope telescope-tabs",
+		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+	},
+	{
+		"nvim-telescope/telescope-file-browser.nvim",
+		cmd = "Telescope file_browser",
+		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
 	},
 	{
 		'is0n/fm-nvim',
@@ -296,14 +318,7 @@ require("lazy").setup({
 	},
 	{
 		"nvim-telescope/telescope-frecency.nvim",
-		config = function()
-			vim.keymap.set(
-				'n',
-				'<leader>fF',
-				function() vim.cmd("Telescope frecency") end, {})
-
-			require("telescope").load_extension "frecency"
-		end,
+		cmd = "Telescope frecency",
 	},
 	-- {
 	-- 	"nvim-telescope/telescope-project.nvim",
@@ -313,23 +328,17 @@ require("lazy").setup({
 	-- },
 	{
 		"natecraddock/workspaces.nvim",
+		cmd = "Telescope workspaces",
 		dependencies = {
 			{'nvim-telescope/telescope.nvim'},
 		},
 		config = function()
-			require('telescope').load_extension("workspaces")
-			vim.keymap.set(
-				'n',
-				'<leader>fw',
-				function() vim.cmd("Telescope workspaces") end, {})
-
-			require("workspaces").setup({
-				    cd_type = "tab",
-			})
+			require("workspaces").setup({ cd_type = "tab", })
 		end,
 	},
 	{
 		"lpoto/telescope-docker.nvim",
+		cmd = "Telescope docker",
 		dependencies = {
 			{'nvim-telescope/telescope.nvim'},
 		},
@@ -347,11 +356,6 @@ require("lazy").setup({
 				-- 		init_term = "tabnew",
 				-- 	},
 				-- },
-
-				vim.keymap.set(
-					'n',
-					'<leader>fd',
-					function() vim.cmd("Telescope docker") end, {})
 			}
 
 			require("telescope").load_extension "docker"
@@ -360,11 +364,8 @@ require("lazy").setup({
 	{
 		"AckslD/nvim-neoclip.lua",
 		dependencies = {
-			---@diagnostic disable-next-line: assign-type-mismatch
 			{'kkharji/sqlite.lua', module = 'sqlite'},
-			-- you'll need at least one of these
 			{'nvim-telescope/telescope.nvim'},
-			-- {'ibhagwan/fzf-lua'},
 		},
 		config = function()
 			require('telescope').load_extension('neoclip')
@@ -695,7 +696,7 @@ require("lazy").setup({
 	'tpope/vim-fugitive',
 	'tpope/vim-eunuch',
 	'mbbill/undotree',
-	'nvim-tree/nvim-web-devicons',
+	{ "nvim-tree/nvim-web-devicons", lazy = true },
 
 	-- 'nvim-treesitter/nvim-treesitter-context',
 	-- 'lukas-reineke/indent-blankline.nvim',
