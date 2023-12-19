@@ -31,7 +31,6 @@ o.smartcase = true
 o.termguicolors = true
 o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 o.laststatus = 0
-o.showmode = false
 
 opt.formatoptions = {
 	[1] = true,
@@ -49,6 +48,7 @@ opt.wildignore:append({
 	'__pycache__',
 })
 
+vim.cmd.colorscheme('habamax')
 vim.cmd([[
 let mapleader = " "
 ]])

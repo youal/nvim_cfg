@@ -25,9 +25,7 @@ require("lazy").setup({
 			require('neorg').setup {
 				load = {
 					["core.defaults"] = {},
-					["core.concealer"] = {},
-			}
-		}
+					["core.concealer"] = {},}}
 		end,
 	},
 	{
@@ -73,7 +71,7 @@ require("lazy").setup({
 		config = function()
 			vim.cmd([[
 				let g:nvim_ipy_perform_mappings = 0
-				map <silent> <c-s> <Plug>(IPy-Run)
+				map <silent> <leader>rs <Plug>(IPy-Run)
 			]])
 		end,
 	},
@@ -106,8 +104,19 @@ require("lazy").setup({
 	{
 		'mfussenegger/nvim-lint',
 		config = function()
+			vim.api.nvim_create_autocmd(
+				{ "BufEnter", "InsertLeave", "TextChanged" },
+				{
+					pattern = { "*.lua", "*.py", "*.sh" },
+					callback = function()
+						require("lint").try_lint()
+					end,
+				})
+
 			require('lint').linters_by_ft = {
-				sh = {'shellcheck',}
+				lua = {'luacheck',},
+				python = {'ruff',},
+				sh = {'shellcheck',},
 			}
 		end
 	},
@@ -182,6 +191,17 @@ require("lazy").setup({
 			vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 			vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 		end
+	},
+	{
+		"LukasPietzschmann/telescope-tabs",
+		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+		config = function()
+			vim.keymap.set(
+				'n',
+				'<leader>ft',
+				function() vim.cmd("Telescope telescope-tabs list_tabs") end, {})
+			require('telescope-tabs')
+		end,
 	},
 	{
 		"nvim-telescope/telescope-file-browser.nvim",
@@ -656,19 +676,13 @@ require("lazy").setup({
 	-- 	end,
 	-- },
 
-	-- 'nvim-treesitter/nvim-treesitter-context',
-	-- 'lukas-reineke/indent-blankline.nvim',
-	-- 'famiu/bufdelete.nvim',
-	-- 'junegunn/goyo.vim',
-	-- 'wellle/targets.vim',
-	-- 'andymass/vim-matchup',
-	-- 'preservim/tagbar',
-	-- 'ludovicchabant/vim-gutentags',
-	-- 'mhinz/vim-grepper',
-	'tpope/vim-fugitive',
-	'tpope/vim-eunuch',
-	'mbbill/undotree',
-	"nvim-tree/nvim-web-devicons",
+	{
+		'preservim/tagbar',
+		config = function()
+			vim.g.tagbar_show_linenumbers = 2
+		end
+	},
+	'ludovicchabant/vim-gutentags',
 
 	'bronson/vim-trailing-whitespace',
 	-- 'ntpeters/vim-better-whitespace',
@@ -677,4 +691,17 @@ require("lazy").setup({
 	-- 'godlygeek/tabular',
 	-- 'tommcdo/vim-lion',
 	-- 'vim-scripts/Align',
+
+	'tpope/vim-fugitive',
+	'tpope/vim-eunuch',
+	'mbbill/undotree',
+	'nvim-tree/nvim-web-devicons',
+
+	-- 'nvim-treesitter/nvim-treesitter-context',
+	-- 'lukas-reineke/indent-blankline.nvim',
+	-- 'famiu/bufdelete.nvim',
+	-- 'junegunn/goyo.vim',
+	-- 'wellle/targets.vim',
+	-- 'andymass/vim-matchup',
+	-- 'mhinz/vim-grepper',
 })

@@ -40,10 +40,6 @@ map.set('i', '<F3>', '<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>', {})
 -- map.set('n', '<Leader>nc', ':set background=dark<CR>:CycleColorNext<CR>', {})
 -- map.set('i', '<C-x><C-o>', "<Cmd>lua require('cmp').complete()<CR>", {})
 
--- Moves the selected lines down one line, while indenting them
-map.set("v", "<C-j>", ":m '>+1<CR>gv=gv", {})
-map.set("v", "<C-k>", ":m '<-2<CR>gv=gv", {})
-
 -- Avoid to have the cursor moving when doing a join
 map.set('n', 'J', 'mzJ`z', {noremap = true})
 map.set('n', 'gJ', 'mzgJ`z', {noremap = true})
@@ -52,3 +48,4 @@ map.set('n', '<C-d>', '<C-d>zz', {})
 map.set('n', '<C-u>', '<C-u>zz', {})
 map.set('n', 'n', 'nzzzv', {})
 map.set('n', 'N', 'Nzzzv', {})
+map.set('n', '%', '%zz', {})

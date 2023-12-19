@@ -1,6 +1,6 @@
 require'nvim-treesitter.configs'.setup {
 	-- Automatically install missing parsers when entering buffer
-	auto_install = true,
+	auto_install = false,
 	ignore_install = { "scheme" },
 
 	-- Treesiter gives a better highlighting

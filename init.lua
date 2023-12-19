@@ -1,35 +1,6 @@
 require("youal")
 
-
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  callback = function()
-    require("lint").try_lint()
-  end,
-})
-
 vim.cmd([[
-colorscheme habamax
-
-" function! LF()
-"     let temp = tempname()
-"     exec 'silent !lf -selection-path=' . shellescape(temp)
-"     if !filereadable(temp)
-"         redraw!
-"         return
-"     endif
-"     let names = readfile(temp)
-"     if empty(names)
-"         redraw!
-"         return
-"     endif
-"     exec 'edit ' . fnameescape(names[0])
-"     for name in names[1:]
-"         exec 'argadd ' . fnameescape(name)
-"     endfor
-"     redraw!
-" endfunction
-" command! -bar LF call LF()
-
 au BufRead,BufNewFile *.libsonnet set filetype=jsonnet
 au BufRead,BufNewFile *.hql set filetype=sql
 au FileType jsonnet set tabstop=8 | set shiftwidth=8 | set softtabstop=8
