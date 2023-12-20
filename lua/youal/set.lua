@@ -49,7 +49,6 @@ opt.wildignore:append({
 	'__pycache__',
 })
 
-opt.splitbelow = true
 opt.splitright = true
 
 opt.inccommand = 'split'
