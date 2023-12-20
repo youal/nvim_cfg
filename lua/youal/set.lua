@@ -49,8 +49,6 @@ opt.wildignore:append({
 	'__pycache__',
 })
 
-opt.splitright = true
-
 opt.inccommand = 'split'
 opt.virtualedit = 'block'
 
