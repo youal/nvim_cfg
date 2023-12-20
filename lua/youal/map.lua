@@ -16,6 +16,7 @@ map.set('n', '<Tab>', ':tabnext<CR>', {})
 
 -- To escape the insert/terminal mode more easily.
 map.set('t', '<Esc>', '<C-\\><C-n>', {})
+map.set('n', '<leader>nt', ':split | terminal<CR>i', {})
 map.set('n', ']oh', ':nohlsearch<CR>', {})
 
 map.set('n', '[os', ':set spell<CR>', {})

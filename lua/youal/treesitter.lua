@@ -17,16 +17,16 @@ require'nvim-treesitter.configs'.setup {
 		enable = true,
 		keymaps = {
 			-- in normal mode, start incremental selection.
-			init_selection = "gnn",
+			init_selection = "<leader>is",
 
 			-- in visual mode, increment to the upper named parent.
-			node_incremental = "grn",
+			node_incremental = "<leader>ni",
 
 			-- in visual mode, increment to the upper scope.
-			scope_incremental = "grc",
+			scope_incremental = "<leader>si",
 
 			-- in visual mode, decrement to the previous named node.
-			node_decremental = "grm",
+			node_decremental = "<leader>nd",
 		},
 	},
 

@@ -2,6 +2,7 @@ local bo = vim.bo	-- buffer
 local wo = vim.wo	-- window
 local o = vim.o		-- general
 local opt = vim.opt
+local cmd = vim.cmd
 
 -- Usefull to search recursivelly for a file with "find" withing the cwd.
 -- bo.path = bo.path .. ",./**"
@@ -54,7 +55,7 @@ opt.splitright = true
 opt.inccommand = 'split'
 opt.virtualedit = 'block'
 
-vim.cmd.colorscheme('habamax')
+cmd.colorscheme('habamax')
 vim.cmd([[
 let mapleader = " "
 ]])
