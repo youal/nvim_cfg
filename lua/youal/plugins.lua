@@ -7,7 +7,7 @@ if not vim.loop.fs_stat(lazypath) then
 		"clone",
 		"--filter=blob:none",
 		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
+		"--branch=stable",
 		lazypath,
 	})
 end
@@ -30,6 +30,27 @@ require("lazy").setup({
 					["core.defaults"] = {},
 					["core.concealer"] = {},}}
 		end,
+	},
+	{
+		'jubnzv/mdeval.nvim',
+		ft = "norg",
+		config = function()
+			require 'mdeval'.setup({
+				require_confirmation=false,
+				eval_options = {
+					sh = {
+						command = {"sh"},
+						language_code = "sh",
+						exec_type = "interpreted",
+						extension = "sh",
+					},
+				},
+			})
+
+			vim.api.nvim_set_keymap('n', '<leader>cr',
+				"<cmd>lua require 'mdeval'.eval_code_block()<CR>",
+				{silent = true, noremap = true})
+		end
 	},
 	{
 		"kylechui/nvim-surround",
@@ -68,15 +89,6 @@ require("lazy").setup({
 		config = function()
 			require('Comment').setup()
 		end
-	},
-	{
-		'bfredl/nvim-ipy',
-		config = function()
-			vim.cmd([[
-				let g:nvim_ipy_perform_mappings = 0
-				map <silent> <leader>rs <Plug>(IPy-Run)
-			]])
-		end,
 	},
 	{
 		"ellisonleao/glow.nvim",
@@ -132,34 +144,15 @@ require("lazy").setup({
 			]])
 		end,
 	},
-	-- Default settings are not good for Lisp
-	-- {
-	-- 	'windwp/nvim-autopairs',
-	-- 	config = function()
-	-- 		require("nvim-autopairs").setup {}
-	-- 	end
-	-- },
-	-- Slow to load
-	-- {
-	-- 	-- Available servers:
-	-- 	-- https://github.com/williamboman/mason-lspconfig.nvim
-	-- 	"williamboman/mason-lspconfig.nvim",
-	-- 	dependencies = {
-	-- 		'williamboman/mason.nvim',
-	-- 		'neovim/nvim-lspconfig',
-	-- 	},
-	-- 	config = function()
-	-- 		require("mason").setup()
-	-- 		require("mason-lspconfig").setup {
-	-- 			ensure_installed = {
-	-- 				'ruff_lsp',
-	-- 				'lua_ls',
-	-- 			},
-	-- 			automatic_installation = true,
-	-- 		}
-	-- 		require("youal.lspconfig")
-	-- 	end
-	-- },
+	{
+		'rlane/pounce.nvim',
+		config = function()
+			vim.keymap.set(
+				'n',
+				'<leader>jp',
+				function() vim.cmd("Pounce") end, {})
+		end
+	},
 	{
 		'HiPhish/nvim-ts-rainbow2',
 		keys = {
@@ -198,6 +191,10 @@ require("lazy").setup({
 			vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 			vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 			vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+
+			vim.keymap.set('n',
+				'<leader>fj',
+				function() vim.cmd('Telescope jumplist') end, {})
 
 			vim.keymap.set(
 				'n',
@@ -428,75 +425,6 @@ require("lazy").setup({
 
 	-- LSP
 	-- {
-	-- 	-- https://github.com/williamboman/mason.nvim/blob/main/PACKAGES.md
-	-- 	-- https://github.com/williamboman/mason.nvim/wiki/Extensions
-	-- 	'williamboman/mason.nvim',
-	-- 	config = function()
-	-- 		require("mason").setup {}
-	-- 	end
-	-- },
-	-- {
-	-- 	'WhoIsSethDaniel/mason-tool-installer.nvim',
-	-- 	config = function()
-	-- 		require('mason-tool-installer').setup {
-	-- 			ensure_installed = {
-	-- 				'gopls',
-	-- 				'shellcheck',
-	-- 				'lua-language-server',
-	-- 				-- 'luacheck',
-	-- 				'clangd',
-	-- 				'jsonnet-language-server',
-	-- 				'hadolint',
-	-- 				'yamllint',
-	-- 				'ansible-lint',
-	-- 			}}
-	-- 	end,
-	-- },
-	-- {
-	-- 	-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-	-- 	-- https://github.com/neovim/nvim-lspconfig/wiki/Language-specific-plugins
-	-- 	-- https://github.com/neovim/nvim-lspconfig/wiki/Snippets
-	-- 	"neovim/nvim-lspconfig",
-	-- 	config = function()
-	-- 		require("youal.lspconfig")
-	-- 	end,
-	-- },
-	-- What is the difference with mason-tool-installer ?
-	-- {
-	-- 	'jay-babu/mason-null-ls.nvim',
-	-- 	config = function()
-	-- 		require("mason-null-ls").setup({
-	-- 			ensure_installed = {"shellcheck"}
-	-- 		})
-	-- 	end
-	-- },
-	-- Dead ?
-	-- {
-	-- 	-- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
-	-- 	"jose-elias-alvarez/null-ls.nvim",
-	-- 	dependencies = 'nvim-lua/plenary.nvim',
-	-- 	config = function()
-	-- 		local null_ls = require("null-ls")
-	-- 		null_ls.setup {
-	-- 			sources = {
-	-- 				-- Extremely heavy. Makes my laptop crash when reading
-	-- 				-- the code of Kubernetes.
-	-- 				-- null_ls.builtins.diagnostics.staticcheck,
-	-- 				-- null_ls.builtins.diagnostics.revive,
-	-- 				-- null_ls.builtins.diagnostics.luacheck,
-	-- 				null_ls.builtins.diagnostics.shellcheck,
-	-- 				null_ls.builtins.diagnostics.chktex,
-	-- 				null_ls.builtins.diagnostics.hadolint,
-	-- 				null_ls.builtins.diagnostics.yamllint,
-	-- 				null_ls.builtins.diagnostics.ansiblelint,
-	-- 				null_ls.builtins.code_actions.shellcheck,
-	-- 				-- null_ls.builtins.code_actions.gitsigns,
-	-- 				-- null_ls.builtins.formatting.stylua,
-	-- 				-- null_ls.builtins.completion.spell,
-	-- 			}}
-	-- 	end,
-	-- },
-	-- {
 	-- 	'simrat39/symbols-outline.nvim',
 	-- 	config = function()
 	-- 		require("youal.symbols")
@@ -520,19 +448,6 @@ require("lazy").setup({
 	-- 		}
 	-- 	end
 	-- },
-	-- {
-	-- 	-- https://github.com/williamboman/mason.nvim/blob/main/PACKAGES.md
-	-- 	-- https://github.com/williamboman/mason.nvim/wiki/Extensions
-	-- 	'williamboman/mason.nvim',
-	-- 	config = function()
-	-- 		require("mason").setup {}
-	-- 	end
-	-- },
-	-- {
-	-- 	'WhoIsSethDaniel/mason-tool-installer.nvim',
-	-- 	config = function()
-	-- 		require('mason-tool-installer').setup {
-	-- 			ensure_installed = {
 
 	-- Completion
 	-- {
@@ -580,102 +495,20 @@ require("lazy").setup({
 	-- 		end,
 	-- 	},
 
-	-- Git
-	-- {
-	-- 	"NeogitOrg/neogit",
-	-- 	dependencies = {
-	-- 		"nvim-lua/plenary.nvim",         -- required
-	-- 		"nvim-telescope/telescope.nvim", -- optional
-	-- 		-- "sindrets/diffview.nvim",        -- optional
-	-- 		-- "ibhagwan/fzf-lua",              -- optional
-	-- 	},
-	-- 	config = function()
-	-- 		require('neogit').setup{
-	-- 			disable_line_numbers = false,
-	-- 		}
-	-- 	end,
-	-- },
-	-- { 'sindrets/diffview.nvim', dependencies = 'nvim-lua/plenary.nvim' },
-	-- {
-	-- 	'lewis6991/gitsigns.nvim',
-	-- 	config = function()
-	-- 		require("gitsigns").setup {
-	-- 			on_attach = function(bufnr)
-	-- 				local gs = package.loaded.gitsigns
-	--
-	-- 				local function map(mode, l, r, opts)
-	-- 					opts = opts or {}
-	-- 					opts.buffer = bufnr
-	-- 					vim.keymap.set(mode, l, r, opts)
-	-- 				end
-	--
-	-- 				-- Navigation
-	-- 				map('n', ']c', function()
-	-- 					if vim.wo.diff then return ']c' end
-	-- 					vim.schedule(function() gs.next_hunk() end)
-	-- 					return '<Ignore>'
-	-- 				end, {expr=true})
-	--
-	-- 				map('n', '[c', function()
-	-- 					if vim.wo.diff then return '[c' end
-	-- 					vim.schedule(function() gs.prev_hunk() end)
-	-- 					return '<Ignore>'
-	-- 				end, {expr=true})
-	--
-	-- 				-- Actions
-	-- 				map({'n', 'v'}, '<leader>hs', ':Gitsigns stage_hunk<CR>')
-	-- 				map({'n', 'v'}, '<leader>hr', ':Gitsigns reset_hunk<CR>')
-	-- 				map('n', '<leader>hS', gs.stage_buffer)
-	-- 				map('n', '<leader>hu', gs.undo_stage_hunk)
-	-- 				map('n', '<leader>hR', gs.reset_buffer)
-	-- 				map('n', '<leader>hp', gs.preview_hunk)
-	-- 				map('n', '<leader>hb', function() gs.blame_line{full=true} end)
-	-- 				map('n', '<leader>tb', gs.toggle_current_line_blame)
-	-- 				map('n', '<leader>hd', gs.diffthis)
-	-- 				map('n', '<leader>hD', function() gs.diffthis('~') end)
-	-- 				map('n', '<leader>td', gs.toggle_deleted)
-	--
-	-- 				-- Text object
-	-- 				map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
-	-- 			end
-	-- 		}
-	-- 	end
-	-- },
-
-	-- Zen mode
-	-- {
-	-- 	"folke/twilight.nvim",
-	-- 	config = function()
-	-- 		require("twilight").setup {
-	-- 			-- your configuration comes here
-	-- 			-- or leave it empty to use the default settings
-	-- 			-- refer to the configuration section below
-	-- 		}
-	-- 	end
-	-- },
-
-	-- Jump
-	-- {
-	-- 	'phaazon/hop.nvim',
-	-- 	branch = 'v2', -- optional but strongly recommended
-	-- 	config = function()
-	-- 		require'hop'.setup {}
-	-- 	end
-	-- },
-
 	-- Snipets
-	-- {
-	-- 	'L3MON4D3/LuaSnip',
-	-- 	config = function()
-	-- 		-- Use Tab (or some other key if you prefer) to trigger visual selection
-	-- 		require('neoclip').setup({
-	-- 			store_selection_keys = "y",
-	-- 		})
-	-- 		require("luasnip").config.set_config({
-	-- 			store_selection_keys = "<Tab>",
-	-- 		})
-	-- 	end,
-	-- },
+	{
+		'L3MON4D3/LuaSnip',
+		lazy = true,
+		config = function()
+			-- Use Tab (or some other key if you prefer) to trigger visual selection
+			require('neoclip').setup({
+				store_selection_keys = "y",
+			})
+			require("luasnip").config.set_config({
+				store_selection_keys = "<Tab>",
+			})
+		end,
+	},
 
 	{
 		'preservim/tagbar',
@@ -747,11 +580,52 @@ require("lazy").setup({
 	'mbbill/undotree',
 	{ "nvim-tree/nvim-web-devicons", lazy = true },
 
+	{
+		'mizlan/iswap.nvim',
+		config = function()
+			vim.keymap.set('n', '<Leader>sp', ':ISwap<CR>', {})
+		end
+	},
+	{
+		"christoomey/vim-tmux-navigator",
+		cmd = {
+			"TmuxNavigateLeft",
+			"TmuxNavigateDown",
+			"TmuxNavigateUp",
+			"TmuxNavigateRight",
+			"TmuxNavigatePrevious",
+		},
+		keys = {
+			{ "<M-h>", "<cmd>TmuxNavigateLeft<cr>" },
+			{ "<M-j>", "<cmd>TmuxNavigateDown<cr>" },
+			{ "<M-k>", "<cmd>TmuxNavigateUp<cr>" },
+			{ "<M-l>", "<cmd>TmuxNavigateRight<cr>" },
+			{ "<M-\\>", "<cmd>TmuxNavigatePrevious<cr>" },
+		},
+	},
+	'famiu/bufdelete.nvim',
+	'tmux-plugins/vim-tmux',
+	'wellle/tmux-complete.vim',
+	'tpope/vim-abolish',
+	'tpope/vim-endwise',
+	'tpope/vim-repeat',
+	'tpope/vim-tbone',
+
+	'tpope/vim-dispatch',
+	-- 'skywind3000/asyncrun.vim',
+
+	-- DB
+	-- 'tpope/vim-dadbod',
+
+	'glts/vim-radical',
+	'glts/vim-magnum',
+
 	-- 'nvim-treesitter/nvim-treesitter-context',
+	-- 'JoosepAlviste/nvim-ts-context-commentstring',
 	-- 'lukas-reineke/indent-blankline.nvim',
-	-- 'famiu/bufdelete.nvim',
 	-- 'junegunn/goyo.vim',
 	-- 'wellle/targets.vim',
 	-- 'andymass/vim-matchup',
 	-- 'mhinz/vim-grepper',
+	-- kevinhwang91/nvim-bqf
 })
