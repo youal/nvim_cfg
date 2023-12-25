@@ -597,6 +597,7 @@ require("lazy").setup({
 	'famiu/bufdelete.nvim',
 	'tmux-plugins/vim-tmux',
 	'wellle/targets.vim',
+	'metakirby5/codi.vim',
 	'tpope/vim-eunuch',
 	'tpope/vim-abolish',
 	'tpope/vim-endwise',
