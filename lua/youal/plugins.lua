@@ -228,6 +228,7 @@ require("lazy").setup({
 	},
 	{
 		'is0n/fm-nvim',
+		cmd = "Lf",
 		config = function()
 			require('fm-nvim').setup{
 				-- (Vim) Command used to open files
