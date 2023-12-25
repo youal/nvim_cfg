@@ -53,14 +53,6 @@ require("lazy").setup({
 		end
 	},
 	{
-		"kylechui/nvim-surround",
-		lazy = false,
-		-- tag = "*",
-		config = function()
-			require("nvim-surround").setup({})
-		end,
-	},
-	{
 		'rmagatti/auto-session',
 		config = function()
 			require("auto-session").setup {}
@@ -83,6 +75,15 @@ require("lazy").setup({
 			set nofoldenable
 			]])
 		end,
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		dependencies = "nvim-treesitter/nvim-treesitter",
+	},
+	{
+		"chrisgrieser/nvim-various-textobjs",
+		lazy = false,
+		opts = { useDefaultKeymaps = true },
 	},
 	{
 		'numToStr/Comment.nvim',
@@ -139,8 +140,8 @@ require("lazy").setup({
 		'jiangmiao/auto-pairs',
 		config = function()
 			vim.cmd([[
-				" Removes "'" and "`" from the list of pairs for lisp code
-				au BufRead,BufNewFile *.scm let g:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', '```':'```', '"""':'"""', "'''":"'''"}
+				au BufRead,BufNewFile *.scm let g:AutoPairs = {'(':')', '[':']', '{':'}','"':'"'}
+				au FILETYPE lisp let g:AutoPairs = {'(':')', '[':']', '{':'}','"':'"'}
 			]])
 		end,
 	},
@@ -154,22 +155,14 @@ require("lazy").setup({
 		end
 	},
 	{
-		'HiPhish/nvim-ts-rainbow2',
-		keys = {
-			{ "<leader>lr", "<cmd>Lazy load nvim-ts-rainbow2<cr>", },
-		},
+		'kien/rainbow_parentheses.vim',
 		config = function()
-			require("nvim-treesitter.configs").setup {
-				rainbow = {
-					enable = true,
-					-- list of languages you want to disable the plugin for
-					disable = {},
-					-- Which query to use for finding delimiters
-					query = 'rainbow-parens',
-					-- Highlight the entire buffer all at once
-					strategy = require 'ts-rainbow.strategy.global',
-				}
-			}
+			vim.cmd([[
+			au VimEnter * RainbowParenthesesToggle
+			au Syntax * RainbowParenthesesLoadRound
+			au Syntax * RainbowParenthesesLoadSquare
+			au Syntax * RainbowParenthesesLoadBraces
+			]])
 		end
 	},
 	{
@@ -417,12 +410,6 @@ require("lazy").setup({
 	-- 	end,
 	-- },
 
-	-- Treesitter
-	-- {
-	-- 	'nvim-treesitter/nvim-treesitter-textobjects',
-	-- 	dependencies = 'nvim-treesitter/nvim-treesitter',
-	-- },
-
 	-- LSP
 	-- {
 	-- 	'simrat39/symbols-outline.nvim',
@@ -517,16 +504,6 @@ require("lazy").setup({
 		end
 	},
 	'ludovicchabant/vim-gutentags',
-
-	'bronson/vim-trailing-whitespace',
-	-- 'ntpeters/vim-better-whitespace',
-
-	'junegunn/vim-easy-align',
-	-- 'godlygeek/tabular',
-	-- 'tommcdo/vim-lion',
-	-- 'vim-scripts/Align',
-
-	'tpope/vim-fugitive',
 	{
 		'lewis6991/gitsigns.nvim',
 		config = function()
@@ -574,14 +551,17 @@ require("lazy").setup({
 			}
 		end,
 	},
-	'sindrets/diffview.nvim',
-
-	'tpope/vim-eunuch',
-	'mbbill/undotree',
-	{ "nvim-tree/nvim-web-devicons", lazy = true },
-
+	'tpope/vim-fugitive',
+	{
+		'sindrets/diffview.nvim',
+		cmd = "DiffviewOpen",
+	},
 	{
 		'mizlan/iswap.nvim',
+		cmd = "ISwap",
+		keys = {
+			{ "<leader>sp", "<cmd>ISwap<cr>" },
+		},
 		config = function()
 			vim.keymap.set('n', '<Leader>sp', ':ISwap<CR>', {})
 		end
@@ -603,28 +583,34 @@ require("lazy").setup({
 			{ "<M-\\>", "<cmd>TmuxNavigatePrevious<cr>" },
 		},
 	},
-	'famiu/bufdelete.nvim',
-	'tmux-plugins/vim-tmux',
 	'wellle/tmux-complete.vim',
-	'tpope/vim-abolish',
-	'tpope/vim-endwise',
-	'tpope/vim-repeat',
-	'tpope/vim-tbone',
 
-	'tpope/vim-dispatch',
-	-- 'skywind3000/asyncrun.vim',
-
-	-- DB
-	-- 'tpope/vim-dadbod',
+	{ "nvim-tree/nvim-web-devicons", lazy = true },
 
 	'glts/vim-radical',
 	'glts/vim-magnum',
 
-	-- 'nvim-treesitter/nvim-treesitter-context',
+	'bronson/vim-trailing-whitespace',
+	'junegunn/vim-easy-align',
+	'mbbill/undotree',
+	'wellle/context.vim',
+	'famiu/bufdelete.nvim',
+	'tmux-plugins/vim-tmux',
+	'wellle/targets.vim',
+	'tpope/vim-eunuch',
+	'tpope/vim-abolish',
+	'tpope/vim-endwise',
+	'tpope/vim-repeat',
+	'tpope/vim-tbone',
+	'tpope/vim-surround',
+	'tpope/vim-dispatch',
+
+	-- DB
+	-- 'tpope/vim-dadbod',
+
 	-- 'JoosepAlviste/nvim-ts-context-commentstring',
 	-- 'lukas-reineke/indent-blankline.nvim',
 	-- 'junegunn/goyo.vim',
-	-- 'wellle/targets.vim',
 	-- 'andymass/vim-matchup',
 	-- 'mhinz/vim-grepper',
 	-- kevinhwang91/nvim-bqf
