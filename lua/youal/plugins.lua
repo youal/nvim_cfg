@@ -52,12 +52,61 @@ require("lazy").setup({
 				{silent = true, noremap = true})
 		end
 	},
-	{
-		'rmagatti/auto-session',
-		config = function()
-			require("auto-session").setup {}
-		end
-	},
+
+	-- {
+	-- 	"RutaTang/spectacle.nvim",
+	-- 	dependencies = {
+	-- 		'nvim-lua/plenary.nvim',
+	-- 		'nvim-telescope/telescope.nvim'
+	-- 	}
+	-- 	-- opts = {session_dir = "/path/of/dir/where/you/want/to/save/all/sessions"}
+	-- },
+
+	-- 'https://github.com/niuiic/core.nvim',
+	-- 'https://github.com/niuiic/multiple-session.nvim',
+
+	-- {
+	-- 	"gennaro-tedesco/nvim-possession",
+	-- 	dependencies = {
+	-- 		"ibhagwan/fzf-lua",
+	-- 	},
+	-- 	config = true,
+	-- 	init = function()
+	-- 		local possession = require("nvim-possession")
+	-- 		vim.keymap.set("n", "<leader>sl", function()
+	-- 			possession.list()
+	-- 		end)
+	-- 		vim.keymap.set("n", "<leader>sn", function()
+	-- 			possession.new()
+	-- 		end)
+	-- 		vim.keymap.set("n", "<leader>su", function()
+	-- 			possession.update()
+	-- 		end)
+	-- 		vim.keymap.set("n", "<leader>sd", function()
+	-- 			possession.delete()
+	-- 		end)
+	-- 	end,
+	-- },
+	-- {
+	-- 	"olimorris/persisted.nvim",
+	-- 	config = true
+	-- },
+	-- 'https://github.com/Shatur/neovim-session-manager',
+	-- {
+	-- 	'rmagatti/auto-session',
+	-- 	config = function()
+	-- 		require("auto-session").setup {}
+	-- 	end
+	-- },
+	-- 'https://github.com/tpope/vim-obsession',
+	-- 'https://github.com/vim-scripts/sessionman.vim',
+	-- {
+	-- 	'jedrzejboczar/possession.nvim',
+	-- 	dependencies = { 'nvim-lua/plenary.nvim' },
+	-- 	config = function()
+	-- 		require('possession').setup{}
+	-- 	end
+	-- },
 	-- {
 	-- 	'backdround/tabscope.nvim',
 	-- 	config = function()
@@ -353,16 +402,32 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"AckslD/nvim-neoclip.lua",
-		dependencies = {
-			{'kkharji/sqlite.lua', module = 'sqlite'},
-			{'nvim-telescope/telescope.nvim'},
-		},
+		'bfredl/nvim-miniyank',
 		config = function()
-			require('telescope').load_extension('neoclip')
-			require('neoclip').setup()
-		end,
+			vim.cmd([[
+			map p <Plug>(miniyank-autoput)
+			map P <Plug>(miniyank-autoPut)
+			map <leader>p <Plug>(miniyank-startput)
+			map <leader>P <Plug>(miniyank-startPut)
+			map <leader>n <Plug>(miniyank-cycle)
+			map <leader>N <Plug>(miniyank-cycleback)
+			map <Leader>c <Plug>(miniyank-tochar)
+			map <Leader>l <Plug>(miniyank-toline)
+			map <Leader>b <Plug>(miniyank-toblock)
+			]])
+		end
 	},
+	-- {
+	-- 	"AckslD/nvim-neoclip.lua",
+	-- 	dependencies = {
+	-- 		{'kkharji/sqlite.lua', module = 'sqlite'},
+	-- 		{'nvim-telescope/telescope.nvim'},
+	-- 	},
+	-- 	config = function()
+	-- 		require('telescope').load_extension('neoclip')
+	-- 		require('neoclip').setup()
+	-- 	end,
+	-- },
 
 	-- Colorscheme
 	-- {
@@ -489,9 +554,9 @@ require("lazy").setup({
 		lazy = true,
 		config = function()
 			-- Use Tab (or some other key if you prefer) to trigger visual selection
-			require('neoclip').setup({
-				store_selection_keys = "y",
-			})
+			-- require('neoclip').setup({
+			-- 	store_selection_keys = "y",
+			-- })
 			require("luasnip").config.set_config({
 				store_selection_keys = "<Tab>",
 			})
