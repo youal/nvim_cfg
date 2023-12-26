@@ -592,7 +592,6 @@ require("lazy").setup({
 	'glts/vim-radical',
 	'glts/vim-magnum',
 
-	'https://github.com/vim-scripts/sessionman.vim',
 	'bronson/vim-trailing-whitespace',
 	'junegunn/vim-easy-align',
 	'mbbill/undotree',
