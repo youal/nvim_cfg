@@ -52,67 +52,6 @@ require("lazy").setup({
 				{silent = true, noremap = true})
 		end
 	},
-
-	-- {
-	-- 	"RutaTang/spectacle.nvim",
-	-- 	dependencies = {
-	-- 		'nvim-lua/plenary.nvim',
-	-- 		'nvim-telescope/telescope.nvim'
-	-- 	}
-	-- 	-- opts = {session_dir = "/path/of/dir/where/you/want/to/save/all/sessions"}
-	-- },
-
-	-- 'https://github.com/niuiic/core.nvim',
-	-- 'https://github.com/niuiic/multiple-session.nvim',
-
-	-- {
-	-- 	"gennaro-tedesco/nvim-possession",
-	-- 	dependencies = {
-	-- 		"ibhagwan/fzf-lua",
-	-- 	},
-	-- 	config = true,
-	-- 	init = function()
-	-- 		local possession = require("nvim-possession")
-	-- 		vim.keymap.set("n", "<leader>sl", function()
-	-- 			possession.list()
-	-- 		end)
-	-- 		vim.keymap.set("n", "<leader>sn", function()
-	-- 			possession.new()
-	-- 		end)
-	-- 		vim.keymap.set("n", "<leader>su", function()
-	-- 			possession.update()
-	-- 		end)
-	-- 		vim.keymap.set("n", "<leader>sd", function()
-	-- 			possession.delete()
-	-- 		end)
-	-- 	end,
-	-- },
-	-- {
-	-- 	"olimorris/persisted.nvim",
-	-- 	config = true
-	-- },
-	-- 'https://github.com/Shatur/neovim-session-manager',
-	-- {
-	-- 	'rmagatti/auto-session',
-	-- 	config = function()
-	-- 		require("auto-session").setup {}
-	-- 	end
-	-- },
-	-- 'https://github.com/tpope/vim-obsession',
-	-- 'https://github.com/vim-scripts/sessionman.vim',
-	-- {
-	-- 	'jedrzejboczar/possession.nvim',
-	-- 	dependencies = { 'nvim-lua/plenary.nvim' },
-	-- 	config = function()
-	-- 		require('possession').setup{}
-	-- 	end
-	-- },
-	-- {
-	-- 	'backdround/tabscope.nvim',
-	-- 	config = function()
-	-- 		require("tabscope").setup({})
-	-- 	end,
-	-- },
 	{
 		'nvim-treesitter/nvim-treesitter',
 		build = ':TSUpdate',
@@ -217,9 +156,6 @@ require("lazy").setup({
 	{
 		'nvim-telescope/telescope.nvim',
 		tag = '0.1.5',
-		keys = {
-			{ "<leader>lF", "<cmd>Lazy load telescope.nvim<cr>", },
-		},
 		dependencies = {
 			'nvim-lua/plenary.nvim',
 			{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
@@ -656,6 +592,7 @@ require("lazy").setup({
 	'glts/vim-radical',
 	'glts/vim-magnum',
 
+	'https://github.com/vim-scripts/sessionman.vim',
 	'bronson/vim-trailing-whitespace',
 	'junegunn/vim-easy-align',
 	'mbbill/undotree',
@@ -664,13 +601,17 @@ require("lazy").setup({
 	'tmux-plugins/vim-tmux',
 	'wellle/targets.vim',
 	'metakirby5/codi.vim',
+
 	'tpope/vim-eunuch',
 	'tpope/vim-abolish',
 	'tpope/vim-endwise',
 	'tpope/vim-repeat',
 	'tpope/vim-tbone',
 	'tpope/vim-surround',
-	'tpope/vim-dispatch',
+	{
+		'tpope/vim-dispatch',
+		cmd = {"Make", "Dispatch"}
+	},
 
 	-- DB
 	-- 'tpope/vim-dadbod',

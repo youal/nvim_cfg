@@ -7,7 +7,7 @@ map.set('n', '<leader>y', '"+y')
 map.set('n', '<leader>p', '"+p')
 map.set('n', '<leader>P', 'o<C-r>+p<C-[>')
 
-map.set('n', '<leader>ss', ':% substitute /<C-r>w/g<Left><Left>')
+map.set('n', '<leader><C-s>', ':% substitute /<C-r>w/g<Left><Left>')
 map.set('n', '<leader>x', ':silent ! chmod u+x %<Cr>')
 
 map.set('v', '.', ':normal .<CR>')
@@ -53,3 +53,6 @@ map.set('n', 'N', 'Nzzzv', {})
 map.set('n', '%', '%zz', {})
 map.set('n', '*', '*zz', {})
 map.set('n', '#', '#zz', {})
+
+map.set('n', '<leader>sl', ':SessionList<Cr>', {})
+map.set('n', '<leader>ss', ':SessionSave<Cr>', {})
