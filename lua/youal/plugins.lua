@@ -557,6 +557,9 @@ require("lazy").setup({
 	{
 		'sindrets/diffview.nvim',
 		cmd = "DiffviewOpen",
+		keys = {
+			{"<leader>do", "DiffviewOpen"},
+		},
 		config = function()
 			vim.keymap.set('n', '<leader>do', ':DiffviewOpen<Cr>', {})
 			vim.keymap.set('n', '<leader>dc', ':DiffviewClose<Cr>', {})
