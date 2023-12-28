@@ -53,6 +53,3 @@ map.set('n', 'N', 'Nzzzv', {})
 map.set('n', '%', '%zz', {})
 map.set('n', '*', '*zz', {})
 map.set('n', '#', '#zz', {})
-
-map.set('n', '<leader>sl', ':SessionList<Cr>', {})
-map.set('n', '<leader>ss', ':SessionSave<Cr>', {})

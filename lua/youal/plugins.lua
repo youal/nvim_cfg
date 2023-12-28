@@ -557,6 +557,10 @@ require("lazy").setup({
 	{
 		'sindrets/diffview.nvim',
 		cmd = "DiffviewOpen",
+		config = function()
+			vim.keymap.set('n', '<leader>do', ':DiffviewOpen<Cr>', {})
+			vim.keymap.set('n', '<leader>dc', ':DiffviewClose<Cr>', {})
+		end
 	},
 	{
 		'mizlan/iswap.nvim',
