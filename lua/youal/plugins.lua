@@ -19,7 +19,7 @@ require("lazy").setup({
 		'nvim-neorg/neorg',
 		build = ":Neorg sync-parsers",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		version = 'v6.2.0',
+		version = 'v7.0.0',
 		ft = "norg",
 		config = function()
 			vim.keymap.set('n', '<Leader>toc', ':Neorg toc<CR>', {})
@@ -171,6 +171,22 @@ require("lazy").setup({
 			vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
 			vim.keymap.set('n',
+				'<leader>fc',
+				function() vim.cmd('Telescope diagnostics') end, {})
+
+			vim.keymap.set('n',
+				'<leader>fd',
+				function() vim.cmd('Telescope lsp_definitions') end, {})
+
+			vim.keymap.set('n',
+				'<leader>fr',
+				function() vim.cmd('Telescope lsp_references') end, {})
+
+			vim.keymap.set('n',
+				'<leader>ft',
+				function() vim.cmd('Telescope lsp_typ_definitions') end, {})
+
+			vim.keymap.set('n',
 				'<leader>fj',
 				function() vim.cmd('Telescope jumplist') end, {})
 
@@ -181,7 +197,12 @@ require("lazy").setup({
 
 			vim.keymap.set(
 				'n',
-				'<leader>fd',
+				'<leader>fi',
+				function() vim.cmd("Telescope lsp_implementations") end, {})
+
+			vim.keymap.set(
+				'n',
+				'<leader>fD',
 				function() vim.cmd("Telescope docker") end, {})
 
 			vim.keymap.set(
@@ -352,6 +373,34 @@ require("lazy").setup({
 			map <Leader>b <Plug>(miniyank-toblock)
 			]])
 		end
+	},
+	{
+		"Olical/conjure",
+		ft = { "lisp" },
+		-- dependencies = {
+		-- 	{
+		-- 		"PaterJason/cmp-conjure",
+		-- 		config = function()
+		-- 			local cmp = require("cmp")
+		-- 			local config = cmp.get_config()
+		-- 			table.insert(
+		-- 				config.sources,
+		-- 				{
+		-- 					name = "buffer",
+		-- 					option = {
+		-- 						sources = {
+		-- 							{ name = "conjure" },},},})
+		-- 				cmp.setup(config)
+		-- 		end,
+		-- 	},
+		-- },
+		config = function(_, opts)
+			require("conjure.main").main()
+			require("conjure.mapping")["on-filetype"]()
+		end,
+		init = function()
+			vim.g["conjure#debug"] = true
+		end,
 	},
 	-- {
 	-- 	"AckslD/nvim-neoclip.lua",
