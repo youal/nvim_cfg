@@ -161,65 +161,7 @@ require("lazy").setup({
 			{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 		},
 		config = function()
-			require('telescope').setup {}
-			require('telescope').load_extension('fzf')
-
-			local builtin = require('telescope.builtin')
-			vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-			vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-			vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-			vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-
-			vim.keymap.set('n',
-				'<leader>fc',
-				function() vim.cmd('Telescope diagnostics') end, {})
-
-			vim.keymap.set('n',
-				'<leader>fd',
-				function() vim.cmd('Telescope lsp_definitions') end, {})
-
-			vim.keymap.set('n',
-				'<leader>fr',
-				function() vim.cmd('Telescope lsp_references') end, {})
-
-			vim.keymap.set('n',
-				'<leader>ft',
-				function() vim.cmd('Telescope lsp_typ_definitions') end, {})
-
-			vim.keymap.set('n',
-				'<leader>fj',
-				function() vim.cmd('Telescope jumplist') end, {})
-
-			vim.keymap.set(
-				'n',
-				'<leader>fw',
-				function() vim.cmd("Telescope workspaces") end, {})
-
-			vim.keymap.set(
-				'n',
-				'<leader>fi',
-				function() vim.cmd("Telescope lsp_implementations") end, {})
-
-			vim.keymap.set(
-				'n',
-				'<leader>fD',
-				function() vim.cmd("Telescope docker") end, {})
-
-			vim.keymap.set(
-				'n',
-				'<leader>ft',
-				function() vim.cmd("Telescope telescope-tabs list_tabs") end, {})
-
-			vim.keymap.set(
-				'n',
-				'<leader>fe',
-				function() vim.cmd("Telescope file_browser") end, {})
-
-			vim.keymap.set(
-				'n',
-				'<leader>fF',
-				function() vim.cmd("Telescope frecency") end, {})
-
+			require("youal.telescope")
 		end
 	},
 	{
@@ -236,81 +178,7 @@ require("lazy").setup({
 		'is0n/fm-nvim',
 		cmd = "Lf",
 		config = function()
-			require('fm-nvim').setup{
-				-- (Vim) Command used to open files
-				edit_cmd = "edit",
-
-				-- See `Q&A` for more info
-				on_close = {},
-				on_open = {},
-
-				-- UI Options
-				ui = {
-					-- Default UI (can be "split" or "float")
-					default = "float",
-
-					float = {
-						-- Floating window border (see ':h nvim_open_win')
-						border    = "none",
-
-						-- Highlight group for floating window/border (see ':h winhl')
-						float_hl  = "Normal",
-						border_hl = "FloatBorder",
-
-						-- Floating Window Transparency (see ':h winblend')
-						blend     = 0,
-
-						-- Num from 0 - 1 for measurements
-						height    = 1.0,
-						width     = 1.0,
-
-						-- X and Y Axis of Window
-						x         = 0.5,
-						y         = 0.5
-					},
-
-					split = {
-						-- Direction of split
-						direction = "topleft",
-
-						-- Size of split
-						size      = 24
-					}
-				},
-
-				-- Terminal commands used w/ file manager (have to be in your $PATH)
-				cmds = {
-					lf_cmd      = "lf", -- eg: lf_cmd = "lf -command 'set hidden'"
-					fm_cmd      = "fm",
-					nnn_cmd     = "nnn",
-					fff_cmd     = "fff",
-					twf_cmd     = "twf",
-					fzf_cmd     = "fzf", -- eg: fzf_cmd = "fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
-					fzy_cmd     = "find . | fzy",
-					xplr_cmd    = "xplr",
-					vifm_cmd    = "vifm",
-					skim_cmd    = "sk",
-					broot_cmd   = "broot",
-					gitui_cmd   = "gitui",
-					ranger_cmd  = "ranger",
-					joshuto_cmd = "joshuto",
-					lazygit_cmd = "lazygit",
-					neomutt_cmd = "neomutt",
-					taskwarrior_cmd = "taskwarrior-tui"
-				},
-
-				-- Mappings used with the plugin
-				mappings = {
-					vert_split = "<C-v>",
-					horz_split = "<C-h>",
-					tabedit    = "<C-t>",
-					edit       = "<C-e>",
-					ESC        = "<ESC>"
-				},
-
-				-- Path to broot config
-				broot_conf = vim.fn.stdpath("data") .. "/site/pack/packer/start/fm-nvim/assets/broot_conf.hjson"
-			}
+			require("youal.fm")
 		end,
 	},
 	{
