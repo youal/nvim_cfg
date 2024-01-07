@@ -15,6 +15,7 @@ bo.tabstop = 8
 bo.softtabstop = bo.tabstop
 bo.shiftwidth = bo.tabstop
 o.shiftround = true
+o.ignorecase = true
 
 -- opt.smartindent = true
 -- opt.cindent = true
@@ -55,4 +56,5 @@ opt.virtualedit = 'block'
 cmd.colorscheme('habamax')
 vim.cmd([[
 let mapleader = " "
+let maplocalleader = " "
 ]])
