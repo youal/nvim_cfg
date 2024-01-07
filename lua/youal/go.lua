@@ -16,6 +16,7 @@ create_autocmd('FileType', {
 			cmd = {'gopls'},
 			root_dir = root_dir})
 
+		vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = 0 })
 		vim.lsp.buf_attach_client(0, lsp_server_id)
 	end
 })
