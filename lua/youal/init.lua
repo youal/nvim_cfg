@@ -3,7 +3,7 @@ require("youal.plugins")
 require("youal.map")
 require("youal.sh")
 require("youal.shebang")
--- require("youal.go")
+require("youal.go")
 -- require("youal.c")
 
 -- require("youal.packer")
